@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
 import { PublicKey } from '@solana/web3.js'
 import { useI18n } from 'vue-i18n'
 import { Icon, addCollection } from '@iconify/vue'
@@ -21,6 +20,5 @@ const { t } = useI18n()
     </div>
     <div>{{ t('button.toggle_dark') }}</div>
     <Icon icon="mdi:account-voice" class="h-16 text-red-500 w-16" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
