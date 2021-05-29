@@ -1,0 +1,28 @@
+{
+    "button": {
+        "about": "About",
+        "back": "Back",
+        "go": "GO",
+        "home": "Home",
+        "toggle_dark": "Dark Mode",
+        "toggle_langs": "Change languages"
+    },
+    "intro": {
+        "desc": "Opinionated Vite Starter Template",
+        "dynamic-route": "Demo of dynamic route",
+        "hi": "Hi, {name}!",
+        "whats-your-name": "What's your name?"
+    },
+    "not-found": "This page could not be found.",
+    "tab": {
+        "dashboard": "Dashboard",
+        "market": "Market",
+        "dapps": "Dapps"
+    },
+    "hint": {
+        "search": "Search by Address"
+    },
+    "misc": {
+        "right-reserved": "All rights reserved"
+    }
+}
