@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { getCurrentInstance } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
+import { Connection } from '@solana/web3.js'
 
 const { t } = useI18n()
+
+const connection: Connection = getCurrentInstance()?.appContext.config.globalProperties.$web3
+
+const getVersion = async function getVersion() {
+  return await connection.getVersion()
+}
 </script>
 
 <template>

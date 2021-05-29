@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
 import { createHead } from '@vueuse/head'
+import { Connection } from '@solana/web3.js'
+import { SERUM_RPC_ENDPOINT } from '@/utils'
+import NProgress from 'nprogress'
 import App from './App.vue'
 import router from './router'
 import 'windi.css'
@@ -8,8 +11,14 @@ import i18n from './i18n'
 
 const head = createHead()
 
-createApp(App)
-  .use(head)
-  .use(i18n)
-  .use(router)
-  .mount('#app')
+const app = createApp(App)
+
+app.use(head)
+app.use(i18n)
+app.use(router)
+app.mount('#app')
+
+app.config.globalProperties.$web3 = new Connection(SERUM_RPC_ENDPOINT, 'confirmed')
+
+router.beforeEach(() => { NProgress.start() })
+router.afterEach(() => { NProgress.done() })
