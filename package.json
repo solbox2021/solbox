@@ -14,6 +14,7 @@
         "@project-serum/serum": "^0.13.38",
         "@project-serum/sol-wallet-adapter": "^0.2.0",
         "@solana/spl-token": "^0.1.4",
+        "@solana/spl-token-registry": "^0.2.117",
         "@solana/web3.js": "^1.15.0",
         "@vueuse/core": "^4.9.2",
         "@vueuse/head": "^0.5.1",

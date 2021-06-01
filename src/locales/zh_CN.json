@@ -24,5 +24,9 @@
     },
     "misc": {
         "right-reserved": "All rights reserved"
+    },
+    "dashboard": {
+        "balance": "余额",
+        "value": "价值"
     }
 }

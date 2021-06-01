@@ -1,12 +1,14 @@
+import { PublicKey } from '@solana/web3.js'
 
 export const SERUM_RPC_ENDPOINT = 'https://solana-api.projectserum.com'
 
-// export const SYSTEM_PROGRAM_ID = new PublicKey('11111111111111111111111111111111')
-// export const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA')
-// export const RENT_PROGRAM_ID = new PublicKey('SysvarRent111111111111111111111111111111111')
-// export const CLOCK_PROGRAM_ID = new PublicKey('SysvarC1ock11111111111111111111111111111111')
-// export const ASSOCIATED_TOKEN_PROGRAM_ID = new PublicKey('ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL')
+export const SYSTEM_PROGRAM_ID = new PublicKey('11111111111111111111111111111111')
+export const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA')
+export const RENT_PROGRAM_ID = new PublicKey('SysvarRent111111111111111111111111111111111')
+export const CLOCK_PROGRAM_ID = new PublicKey('SysvarC1ock11111111111111111111111111111111')
+export const ASSOCIATED_TOKEN_PROGRAM_ID = new PublicKey('ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL')
 
+export const SOL_MINT_ADDRESS = 'So11111111111111111111111111111111111111112'
 export const RAY_MINT_ADDRESS = '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'
 export const USDC_MINT_ADDRESS = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
 export const MER_MINT_ADDRESS = 'MERt85fc5boKw3BW1eYdxonEuJNvXbiMbs6hvheau5K'
