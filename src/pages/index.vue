@@ -14,7 +14,6 @@ const { t } = useI18n()
 
 <template>
   <div class="home">
-    <img src="../assets/logo.png" />
     <div class="text-red-500">
       {{ testKey.toBase58() }}
     </div>
