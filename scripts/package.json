@@ -4,6 +4,7 @@
     "description": "some tools for solbox",
     "main": "index.js",
     "scripts": {
+        "coingecko": "ts-node coingecko.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Joe.Wu",
