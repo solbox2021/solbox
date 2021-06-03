@@ -1,13 +1,50 @@
+<script lang="ts">
+import { PriceRes } from '@/utils/api'
+
+</script>
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { defineProps } from '@vue/runtime-core'
+import { computed, defineProps, initCustomFormatter } from '@vue/runtime-core'
 import { TokenAccountInfo } from '@/utils/web3'
+import { pricesStore } from '@/store'
+import { asyncComputed } from '@vueuse/core'
+import { ref } from 'vue'
+import { CoinGeckoApi, SIMPLE_PRICE_PATH } from '@/utils/api'
+import { Icon, addCollection } from '@iconify/vue'
+import ri from '@iconify/json/json/ri.json'
+
+addCollection(ri)
 
 const { t } = useI18n()
 
 const props = defineProps({
   info: TokenAccountInfo,
 })
+
+const balance = computed(() => props.info?.tokenInfo ? props.info.amount / 10 ** props.info.tokenInfo.decimals : 0)
+const commonPrice = computed(() => pricesStore.getPrice(props.info?.tokenInfo?.symbol))
+
+const evaluating = ref(false)
+const tokenValue = asyncComputed(
+  async() => {
+    if (commonPrice.value) {
+      return (balance.value * commonPrice.value.usd).toFixed(2)
+    }
+    else {
+      const id = pricesStore.getCoinGeckoId(props.info?.tokenInfo?.symbol)
+      if (!id) return 0
+      const fetchedPrice = await CoinGeckoApi.get<PriceRes>(SIMPLE_PRICE_PATH, {
+        params: {
+          ids: id,
+          vs_currencies: 'usd',
+        },
+      })
+      return (fetchedPrice.data[id].usd * balance.value).toFixed(2)
+    }
+  },
+  null,
+  { lazy: true, evaluating },
+)
 
 </script>
 
@@ -25,16 +62,17 @@ const props = defineProps({
     </div>
     <div class="flex flex-col items-start">
       <p class="text-xl text-gray-700 dark:text-gray-200">
-        {{ info.tokenInfo ? info.amount / 10 ** info.tokenInfo.decimals : '--' }}
+        {{ balance }}
       </p>
       <p class="text-xs text-gray-300 dark:text-gray-600">
         {{ t('dashboard.balance').toUpperCase() }}
       </p>
     </div>
     <div class="flex flex-col col-span-2 items-end">
-      <p class="text-xl text-gray-700 dark:text-gray-200">
-        $0
-      </p>
+      <div class="flex text-xl text-gray-700 items-center dark:text-gray-200">
+        <Icon icon="ri:money-dollar-circle-fill" class="h-5 mr-1 text-green-500 w-5" />
+        {{ tokenValue }}
+      </div>
       <p class="text-xs text-gray-300 dark:text-gray-600">
         {{ t('dashboard.value').toUpperCase() }}
       </p>

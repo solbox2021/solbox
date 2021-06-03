@@ -1,12 +1,13 @@
 <script lang="ts">
-import { computed, Ref } from '@vue/runtime-core'
+import { computed, Ref, watch } from '@vue/runtime-core'
+import { PriceRes, SIMPLE_PRICE_PATH } from '@/utils/api'
 </script>
 <script setup lang="ts">
 import { getCurrentInstance, onMounted, ref } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
 import { Connection, PublicKey } from '@solana/web3.js'
 import { getTokenAccounts, getBalance } from '@/utils/web3'
-import { tokensStore } from '@/store/tokens-store'
+import { tokensStore } from '@/store'
 import { TokenAccountInfo } from '@/utils/web3'
 import SPLTokenItem from '@/components/SPLTokenItem.vue'
 import { SOL_MINT_ADDRESS } from '@/utils/ids'
@@ -27,10 +28,10 @@ const mainAccount: Ref<TokenAccountInfo> = ref(new TokenAccountInfo(
   new PublicKey(SOL_MINT_ADDRESS),
   walletAccount,
   0,
+  tokensStore.getTokenInfo(SOL_MINT_ADDRESS)
 ))
 const getSolBalance = async function(address: string) {
   let amount = await getBalance(connection, address)
-  mainAccount.value.tokenInfo = tokensStore.getTokenInfo(SOL_MINT_ADDRESS)
   mainAccount.value.amount = amount
 }
 
