@@ -10,6 +10,8 @@ const { t } = useI18n()
 
 const connection: Connection = getCurrentInstance()?.appContext.config.globalProperties.$web3
 
+const walletValue = ref(0)
+
 const walletAccount = new PublicKey('EHGrQkH6dKoc6gsWeq4Rvu7AwM263vd3mv4enVhNxqZa')
 
 </script>
@@ -19,7 +21,7 @@ const walletAccount = new PublicKey('EHGrQkH6dKoc6gsWeq4Rvu7AwM263vd3mv4enVhNxqZ
     <div class="font-bold my-6 text-4xl">
       {{ t('tab.dashboard') }}
     </div>
-    <SPLTokenList :wallets="[walletAccount]" />
+    <SPLTokenList :wallets="[walletAccount]" @list-value="walletValue = $event" />
   </div>
 </template>
 

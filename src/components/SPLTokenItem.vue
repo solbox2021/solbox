@@ -4,7 +4,7 @@ import { PriceRes } from '@/utils/api'
 </script>
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { computed, defineProps, initCustomFormatter } from '@vue/runtime-core'
+import { computed, defineEmit, defineProps, initCustomFormatter, watch } from '@vue/runtime-core'
 import { TokenAccountInfo } from '@/utils/web3'
 import { pricesStore } from '@/store'
 import { asyncComputed } from '@vueuse/core'
@@ -21,6 +21,10 @@ const props = defineProps({
   info: TokenAccountInfo,
 })
 
+const emit = defineEmit([
+  'tokenValue'
+])
+
 const balance = computed(() => props.info?.tokenInfo ? props.info.amount / 10 ** props.info.tokenInfo.decimals : 0)
 const commonPrice = computed(() => pricesStore.getPrice(props.info?.tokenInfo?.symbol))
 
@@ -28,7 +32,7 @@ const evaluating = ref(false)
 const tokenValue = asyncComputed(
   async() => {
     if (commonPrice.value) {
-      return (balance.value * commonPrice.value.usd).toFixed(2)
+      return balance.value * commonPrice.value.usd
     }
     else {
       const id = pricesStore.getCoinGeckoId(props.info?.tokenInfo?.symbol)
@@ -39,12 +43,15 @@ const tokenValue = asyncComputed(
           vs_currencies: 'usd',
         },
       })
-      return (fetchedPrice.data[id].usd * balance.value).toFixed(2)
+      return fetchedPrice.data[id].usd * balance.value
     }
   },
   null,
   { lazy: true, evaluating },
 )
+watch(tokenValue, (newValue, oldValue) => {
+  emit('tokenValue', newValue)
+})
 
 </script>
 
@@ -71,7 +78,7 @@ const tokenValue = asyncComputed(
     <div class="flex flex-col col-span-2 items-end">
       <div class="flex text-xl text-gray-700 items-center dark:text-gray-200">
         <Icon icon="ri:money-dollar-circle-fill" class="h-5 mr-1 text-green-500 w-5" />
-        {{ tokenValue }}
+        {{ tokenValue?.toFixed(2) }}
       </div>
       <p class="text-xs text-gray-300 dark:text-gray-600">
         {{ t('dashboard.value').toUpperCase() }}

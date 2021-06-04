@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, Ref, watch } from '@vue/runtime-core'
+import { computed, defineEmit, Ref, watch } from '@vue/runtime-core'
 import { PriceRes, SIMPLE_PRICE_PATH } from '@/utils/api'
 </script>
 <script setup lang="ts">
@@ -18,6 +18,10 @@ const { t } = useI18n()
 const props = defineProps({
   wallets: Array
 })
+
+const emit = defineEmit([
+  'listValue'
+])
 
 const connection: Connection = getCurrentInstance()?.appContext.config.globalProperties.$web3
 
@@ -53,6 +57,16 @@ const walletTokens = computed(() => {
   return tokens
 })
 
+const tokenValues: Ref<number[]> = ref([])
+const receiveUpdatedValue = function(index: number, value: number) {
+  console.log(`Item ${index} update value: ${value}`)
+  tokenValues.value[index] = value
+}
+const totalValue = computed(() => tokenValues.value.length > 0 ? tokenValues.value.reduce((previous, current) => previous + current) : 0)
+watch(totalValue, (newValue, oldValue) => {
+  emit('listValue', newValue)
+})
+
 onMounted(() => {
   if(props.wallets && props.wallets.length > 0) {
     if(props.wallets[0] instanceof PublicKey) {
@@ -65,5 +79,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <SPLTokenItem v-for="(data, index) in walletTokens" :key="index" :info="data" />
+  <SPLTokenItem v-for="(data, index) in walletTokens" :key="index" :info="data" @token-value="receiveUpdatedValue(index, $event)" />
 </template>
