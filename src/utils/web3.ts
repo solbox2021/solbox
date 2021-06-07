@@ -1,6 +1,7 @@
 import { TokenInfo } from '@solana/spl-token-registry'
-import { Connection, PublicKey } from '@solana/web3.js'
-import { TOKEN_PROGRAM_ID } from './ids'
+import { Connection, PublicKey, AccountInfo } from '@solana/web3.js'
+import { tokensStore } from '@/store'
+import { TOKEN_PROGRAM_ID, SOL_MINT_ADDRESS } from './ids'
 import { ACCOUNT_LAYOUT } from './layouts'
 
 export class TokenAccountInfo extends Object {
@@ -20,12 +21,18 @@ export class TokenAccountInfo extends Object {
   }
 }
 
-export async function getTokenAccounts(connection: Connection, walletAddress: string): Promise<TokenAccountInfo[]> {
-  const walletPubkey = new PublicKey(walletAddress)
-  const resp = await connection.getTokenAccountsByOwner(walletPubkey, {
-    programId: TOKEN_PROGRAM_ID,
-  })
-  return resp.value.map(({ pubkey, account: { data } }) => new TokenAccountInfo(
+/**
+ * get multi accounts' token accounts
+ * @param connection web3 connection
+ * @param wallets accounts' public key
+ */
+export async function getMultiTokenAccounts(connection: Connection, wallets: PublicKey[]): Promise<TokenAccountInfo[]> {
+  const requests = wallets.map(value => connection.getTokenAccountsByOwner(value, { programId: TOKEN_PROGRAM_ID }))
+  const resp = await Promise.all(requests)
+  const all: { pubkey: PublicKey; account: AccountInfo<Buffer> }[] = []
+  for (let index = 0; index < resp.length; index++)
+    all.push(...resp[index].value)
+  return all.map(({ pubkey, account: { data } }) => new TokenAccountInfo(
     pubkey,
     ACCOUNT_LAYOUT.decode(data).mint,
     ACCOUNT_LAYOUT.decode(data).owner,
@@ -33,7 +40,19 @@ export async function getTokenAccounts(connection: Connection, walletAddress: st
   ))
 }
 
-export async function getBalance(connection: Connection, walletAddress: string): Promise<number> {
-  const walletPubkey = new PublicKey(walletAddress)
-  return await connection.getBalance(walletPubkey, 'confirmed')
+/**
+ * get multi accounts' SOL balance
+ * @param connection web3 connection
+ * @param wallets accounts' public key
+ */
+export async function getMultiBalance(connection: Connection, wallets: PublicKey[]): Promise<TokenAccountInfo[]> {
+  const requests = wallets.map(value => connection.getBalance(value, 'confirmed'))
+  const resp = await Promise.all(requests)
+  return resp.map((value, index) => new TokenAccountInfo(
+    wallets[index],
+    new PublicKey(SOL_MINT_ADDRESS),
+    wallets[index],
+    value,
+    tokensStore.getTokenInfo(SOL_MINT_ADDRESS),
+  ))
 }

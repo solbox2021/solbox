@@ -13,11 +13,8 @@ import ps from '@iconify/json/json/ps.json'
 addCollection(ps)
 const { t } = useI18n()
 
-const connection: Connection = getCurrentInstance()?.appContext.config.globalProperties.$web3
-
 const totalAssets = ref(0)
 const tobeClaimed = ref(0)
-const netWorth = computed(() => totalAssets.value + tobeClaimed.value)
 
 const walletAccounts = ref([
   new PublicKey('EHGrQkH6dKoc6gsWeq4Rvu7AwM263vd3mv4enVhNxqZa'),
