@@ -27,6 +27,11 @@
     },
     "dashboard": {
         "balance": "余额",
-        "value": "价值"
+        "value": "价值",
+        "net-worth": "净值",
+        "to-be-claimed": "待领取",
+        "total-assets": "总资产",
+        "accounts": "账户",
+        "wallet": "钱包"
     }
 }

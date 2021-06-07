@@ -27,6 +27,11 @@
     },
     "dashboard": {
         "balance": "Balance",
-        "value": "Value"
+        "value": "Value",
+        "net-worth": "Net Worth",
+        "to-be-claimed": "To Be Claimed",
+        "total-assets": "Total Assets",
+        "accounts": "Accounts",
+        "wallet": "Wallet"
     }
 }

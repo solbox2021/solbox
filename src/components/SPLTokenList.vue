@@ -59,7 +59,6 @@ const walletTokens = computed(() => {
 
 const tokenValues: Ref<number[]> = ref([])
 const receiveUpdatedValue = function(index: number, value: number) {
-  console.log(`Item ${index} update value: ${value}`)
   tokenValues.value[index] = value
 }
 const totalValue = computed(() => tokenValues.value.length > 0 ? tokenValues.value.reduce((previous, current) => previous + current) : 0)
