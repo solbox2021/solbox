@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Ref } from '@vue/runtime-core'
 </script>
 <script setup lang="ts">
 import { computed, getCurrentInstance, onMounted, ref } from '@vue/runtime-core'
@@ -9,6 +10,7 @@ import AssetsBoard from '@/components/dashboard/AssetsBoard.vue'
 import AccountsBoard from '@/components/dashboard/AccountsBoard.vue'
 import { Icon, addCollection } from '@iconify/vue'
 import ps from '@iconify/json/json/ps.json'
+import { accountsStore } from "@/store";
 
 addCollection(ps)
 const { t } = useI18n()
@@ -16,13 +18,14 @@ const { t } = useI18n()
 const totalAssets = ref(0)
 const tobeClaimed = ref(0)
 
-const walletAccounts = ref([
-  new PublicKey('EHGrQkH6dKoc6gsWeq4Rvu7AwM263vd3mv4enVhNxqZa'),
-  new PublicKey('4gdstXGW5Dx9jfZ4zGqALYGjKTrmWvtajQCTAQMEHK6A'),
-  new PublicKey('B2dDwRadNVoq7F9eV4ZoaapLHniM8oxYyReciMRHHfQ4'),
-  new PublicKey('FtBEggQsPLzUp7bL6PtfPRFRYoC3GjeAawhcadZ8M5gN'),
-  new PublicKey('G1gDAxHddD8qjRC8qB2PQTe3avtNuFvHcYgjzYnEV1MK'),
-])
+const walletAccounts = computed(() => {
+  return accountsStore.getState().map(({ address }) => new PublicKey(address))
+})
+
+// onMounted(() => {
+//   accountsStore.addAccount('EHGrQkH6dKoc6gsWeq4Rvu7AwM263vd3mv4enVhNxqZa', 'main')
+//   accountsStore.addAccount('4gdstXGW5Dx9jfZ4zGqALYGjKTrmWvtajQCTAQMEHK6A', 'secondary')
+// })
 
 </script>
 
@@ -30,7 +33,7 @@ const walletAccounts = ref([
   <div class="container mx-auto px-6">
     <div class="my-6 grid gap-4 grid-cols-10">
       <AssetsBoard class="col-span-full sm:col-span-5 lg:col-span-6" :total-assets="totalAssets" :to-be-claimed="tobeClaimed" />
-      <AccountsBoard class="col-span-full sm:col-span-5 lg:col-span-4" :accounts="walletAccounts" />
+      <AccountsBoard class="col-span-full sm:col-span-5 lg:col-span-4" />
     </div>
     <div class="flex font-bold mt-8 mb-4 text-2xl items-center">
       <Icon icon="ps:wallet" class="h-6 text-primary mr-2 w-6" />

@@ -3,21 +3,9 @@ import { PropType } from 'vue'
 </script>
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { computed, ref } from '@vue/runtime-core'
-import { Icon, addCollection } from '@iconify/vue'
-import twemoji from '@iconify/json/json/twemoji.json'
-import { PublicKey } from '@solana/web3.js'
-import { defineProps } from 'vue'
+import { accountsStore } from "@/store";
 
-addCollection(twemoji)
 const { t } = useI18n()
-
-const props = defineProps({
-  accounts: {
-    type: Array as PropType<PublicKey[]>,
-    default: [],
-  },
-})
 
 </script>
 
@@ -29,13 +17,13 @@ const props = defineProps({
       </p>
     </div>
     <ul class="divide-y flex-grow flex-shrink mx-3 overflow-auto dark:divide-gray-600 sm:max-h-63 lg:max-h-48">
-      <li v-for="(account, index) in accounts" :key="index" class="flex flex-row py-1 justify-between items-center">
+      <li v-for="(account, index) in accountsStore.getState()" :key="index" class="flex flex-row py-1 justify-between items-center">
         <div class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600">
-          {{ account.toString() }}
+          {{ account.address }}
         </div>
         <div class="rounded-lg cursor-default flex-none border-2 border-cyan-400 text-center py-1 px-2 w-22">
           <p class="text-sm text-cyan-400 truncate">
-            Account{{ index }}
+            {{ account.alias }}
           </p>
         </div>
       </li>
