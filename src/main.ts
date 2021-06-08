@@ -4,6 +4,7 @@ import { Connection } from '@solana/web3.js'
 import { SERUM_RPC_ENDPOINT } from '@/utils'
 import NProgress from 'nprogress'
 import { vueAxios } from '@baloise/vue-axios'
+import { VueClipboard } from '@soerenmartius/vue3-clipboard'
 import App from './App.vue'
 import router from './router'
 import 'windi.css'
@@ -18,6 +19,7 @@ app.use(head)
 app.use(i18n)
 app.use(router)
 app.use(vueAxios)
+app.use(VueClipboard)
 app.mount('#app')
 
 app.config.globalProperties.$web3 = new Connection(SERUM_RPC_ENDPOINT, 'confirmed')

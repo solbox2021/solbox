@@ -21,7 +21,10 @@ const { t } = useI18n()
         <div class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600">
           {{ account.address }}
         </div>
-        <div class="rounded-lg cursor-default flex-none border-2 border-cyan-400 text-center py-1 px-2 w-22">
+        <div
+          class="rounded-lg cursor-default flex-none border-2 border-cyan-400 text-center py-1 px-2 w-22"
+          :class="account.alias ? '' : 'hidden'"
+        >
           <p class="text-sm text-cyan-400 truncate">
             {{ account.alias }}
           </p>

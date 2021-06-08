@@ -3,6 +3,7 @@
     "@antfu"
   ],
   "rules": {
+    "no-alert":"off",
     "no-console": "off",
     "indent": "off",
     "@typescript-eslint/indent": ["error"]

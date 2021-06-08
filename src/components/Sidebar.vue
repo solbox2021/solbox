@@ -78,8 +78,9 @@ const router = useRouter()
       <div class="my-6 px-6">
         <button
           class="bg-primary border border-transparent rounded-lg flex font-medium text-sm text-white w-full py-2 px-4 transition-colors leading-5 duration-150 items-center justify-between active:bg-primary hover:bg-primary_dark focus:outline-none focus:shadow-outline-purple"
+          @click="router.push('/manage')"
         >
-          Add Account
+          {{ t('tab.manage') }}
           <span class="ml-2" aria-hidden="true">+</span>
         </button>
       </div>

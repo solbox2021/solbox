@@ -18,14 +18,31 @@ const { t } = useI18n()
 const totalAssets = ref(0)
 const tobeClaimed = ref(0)
 
-const walletAccounts = computed(() => {
-  return accountsStore.getState().map(({ address }) => new PublicKey(address))
-})
+const walletAccounts = computed(() =>
+  accountsStore.getState()
+  .filter(({address}) =>
+    {
+      try {
+        const pub = new PublicKey(address)
+        return true
+      } catch (error) {
+        return false
+      }
+    }
+  )
+  .map(({address}) => new PublicKey(address) )
+)
 
-// onMounted(() => {
-//   accountsStore.addAccount('EHGrQkH6dKoc6gsWeq4Rvu7AwM263vd3mv4enVhNxqZa', 'main')
-//   accountsStore.addAccount('4gdstXGW5Dx9jfZ4zGqALYGjKTrmWvtajQCTAQMEHK6A', 'secondary')
-// })
+onMounted(() => {
+  // accountsStore.addAccount('MERt85fc5boKw3BW1eYdxonEuJNvXbiMbs6hvheau5K', 'MER')
+  // accountsStore.addAccount('4gdstXGW5Dx9jfZ4zGqALYGjKTrmWvtajQCTAQMEHK6A', 'secondary')
+  try {
+    const isCurve = PublicKey.isOnCurve(new PublicKey('95UvgmSMFcB4soFqkU6QhqZ1iJ6FjRFLdrWmL962mhqt').toBytes())
+    console.log(isCurve)
+  } catch (error) {
+    if (error instanceof Error) console.log(error.message)
+  }
+})
 
 </script>
 
