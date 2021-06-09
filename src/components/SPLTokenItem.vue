@@ -27,11 +27,12 @@ const emit = defineEmit([
 
 const balance = computed(() => props.info?.tokenInfo ? props.info.amount / 10 ** props.info.tokenInfo.decimals : 0)
 const commonPrice = computed(() => pricesStore.getPrice(props.info?.tokenInfo?.symbol))
-
+const price = ref(0)
 const evaluating = ref(false)
 const tokenValue = asyncComputed(
   async() => {
     if (commonPrice.value) {
+      price.value = commonPrice.value.usd
       return balance.value * commonPrice.value.usd
     }
     else {
@@ -43,6 +44,7 @@ const tokenValue = asyncComputed(
           vs_currencies: 'usd',
         },
       })
+      price.value = fetchedPrice.data[id].usd
       return fetchedPrice.data[id].usd * balance.value
     }
   },
@@ -75,7 +77,16 @@ watch(tokenValue, (newValue, oldValue) => {
         {{ t('dashboard.balance').toUpperCase() }}
       </p>
     </div>
-    <div class="flex flex-col col-span-2 items-end">
+    <div class="flex-col items-start hidden lg:flex">
+      <div class="flex text-xl text-gray-700 items-center dark:text-gray-200">
+        <Icon icon="ri:money-dollar-circle-fill" class="h-5 mr-1 text-yellow-500 w-5" />
+        {{ price > 0 ? price : '--' }}
+      </div>
+      <p class="text-xs text-gray-300 dark:text-gray-600">
+        {{ t('dashboard.price').toUpperCase() }}
+      </p>
+    </div>
+    <div class="flex flex-col col-span-2 items-end lg:col-span-1">
       <div class="flex text-xl text-gray-700 items-center dark:text-gray-200">
         <Icon icon="ri:money-dollar-circle-fill" class="h-5 mr-1 text-green-500 w-5" />
         {{ tokenValue?.toFixed(2) }}
