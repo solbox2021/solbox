@@ -1,23 +1,7 @@
 import { PriceRes, CoinGeckoApi } from '@/utils/api'
 import coinGeckoIds from '@/assets/coingecko.json'
+import { CommonTokenList, getCoinGeckoId } from '@/utils/coingecko'
 import { Store } from './store'
-
-const CommonTokenList = [
-  'SOL',
-  'BTC',
-  'ETH',
-  'FTT',
-  'KIN',
-  'OXY',
-  'RAY',
-  'ROPE',
-  'SRM',
-  'STEP',
-  'MER',
-  'USDC',
-  'USDT',
-]
-
 class PricesStore extends Store<PriceRes> {
   protected data(): PriceRes {
     return {}
@@ -40,14 +24,10 @@ class PricesStore extends Store<PriceRes> {
   }
 
   getPrice(coinSymbol: string | undefined) {
-    const geckoId = coinGeckoIds.find(({ symbol }) => (symbol === coinSymbol))?.coinGeckoId
+    const geckoId = getCoinGeckoId(coinSymbol)
     if (geckoId) return this.state[geckoId]
     else
       return undefined
-  }
-
-  getCoinGeckoId(coinSymbol: string | undefined): string | undefined {
-    return coinGeckoIds.find(({ symbol }) => (symbol === coinSymbol))?.coinGeckoId
   }
 }
 

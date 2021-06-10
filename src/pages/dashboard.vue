@@ -5,7 +5,8 @@ import { Ref } from '@vue/runtime-core'
 import { computed, getCurrentInstance, onMounted, ref } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
 import { Connection, PublicKey } from '@solana/web3.js'
-import SPLTokenList from '@/components/SPLTokenList.vue'
+import SPLTokenList from '@/components/dashboard/SPLTokenList.vue'
+import OrcaTokenList from '@/components/dashboard/OrcaTokenList.vue';
 import AssetsBoard from '@/components/dashboard/AssetsBoard.vue'
 import AccountsBoard from '@/components/dashboard/AccountsBoard.vue'
 import { Icon, addCollection } from '@iconify/vue'
@@ -33,17 +34,6 @@ const walletAccounts = computed(() =>
   .map(({address}) => new PublicKey(address) )
 )
 
-onMounted(() => {
-  // accountsStore.addAccount('MERt85fc5boKw3BW1eYdxonEuJNvXbiMbs6hvheau5K', 'MER')
-  // accountsStore.addAccount('4gdstXGW5Dx9jfZ4zGqALYGjKTrmWvtajQCTAQMEHK6A', 'secondary')
-  try {
-    const isCurve = PublicKey.isOnCurve(new PublicKey('95UvgmSMFcB4soFqkU6QhqZ1iJ6FjRFLdrWmL962mhqt').toBytes())
-    console.log(isCurve)
-  } catch (error) {
-    if (error instanceof Error) console.log(error.message)
-  }
-})
-
 </script>
 
 <template>
@@ -59,6 +49,7 @@ onMounted(() => {
       </p>
     </div>
     <SPLTokenList :wallets="walletAccounts" @list-value="totalAssets = $event" />
+    <OrcaTokenList :wallets="walletAccounts" />
   </div>
 </template>
 

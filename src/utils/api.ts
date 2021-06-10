@@ -1,10 +1,11 @@
 import { $axios } from '@baloise/vue-axios'
 
+export type Price = {
+  [currency: string]: number
+}
+
 export type PriceRes = {
-  [coin: string]: {
-    // price of coin for this currency
-    [currency: string]: number
-  }
+  [coin: string]: Price
 }
 
 export const SIMPLE_PRICE_PATH = '/simple/price'

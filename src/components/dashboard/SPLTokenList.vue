@@ -9,7 +9,7 @@ import { Connection, PublicKey } from '@solana/web3.js'
 import { getMultiTokenAccounts, getMultiBalance } from '@/utils/web3'
 import { tokensStore } from '@/store'
 import { TokenAccountInfo } from '@/utils/web3'
-import SPLTokenItem from '@/components/SPLTokenItem.vue'
+import SPLTokenItem from '@/components/dashboard/SPLTokenItem.vue'
 import { defineProps } from 'vue'
 
 const { t } = useI18n()

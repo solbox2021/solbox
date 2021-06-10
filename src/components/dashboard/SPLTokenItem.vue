@@ -12,6 +12,7 @@ import { ref } from 'vue'
 import { CoinGeckoApi, SIMPLE_PRICE_PATH } from '@/utils/api'
 import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
+import { getCoinGeckoId, fetchPrice } from '@/utils/coingecko'
 
 addCollection(ri)
 
@@ -36,16 +37,10 @@ const tokenValue = asyncComputed(
       return balance.value * commonPrice.value.usd
     }
     else {
-      const id = pricesStore.getCoinGeckoId(props.info?.tokenInfo?.symbol)
-      if (!id) return 0
-      const fetchedPrice = await CoinGeckoApi.get<PriceRes>(SIMPLE_PRICE_PATH, {
-        params: {
-          ids: id,
-          vs_currencies: 'usd',
-        },
-      })
-      price.value = fetchedPrice.data[id].usd
-      return fetchedPrice.data[id].usd * balance.value
+      const fetchedPrice = await fetchPrice(props.info?.tokenInfo?.symbol)
+      if (!fetchedPrice) return 0
+      price.value = fetchedPrice.usd
+      return fetchedPrice.usd * balance.value
     }
   },
   null,

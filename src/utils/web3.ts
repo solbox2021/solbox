@@ -1,5 +1,5 @@
 import { TokenInfo } from '@solana/spl-token-registry'
-import { Connection, PublicKey, AccountInfo } from '@solana/web3.js'
+import { Connection, PublicKey, AccountInfo, ParsedAccountData, TokenAmount } from '@solana/web3.js'
 import { tokensStore } from '@/store'
 import { TOKEN_PROGRAM_ID, SOL_MINT_ADDRESS } from './ids'
 import { ACCOUNT_LAYOUT } from './layouts'
@@ -55,4 +55,27 @@ export async function getMultiBalance(connection: Connection, wallets: PublicKey
     value,
     tokensStore.getTokenInfo(SOL_MINT_ADDRESS),
   ))
+}
+
+/**
+ * get multi accounts' account info
+ * @param connection web3 connection
+ * @param wallets accounts' public key
+ */
+export async function getMultiParsedAccountInfo(connection: Connection, wallets: PublicKey[]): Promise<(Buffer | ParsedAccountData | undefined)[]> {
+  const requests = wallets.map(value => connection.getParsedAccountInfo(value, 'confirmed'))
+  const resp = await Promise.all(requests)
+  return resp.map((result) => {
+    return result.value?.data
+  })
+}
+
+/**
+ * get a token's total supply
+ * @param connection web3 connection
+ * @param account accounts' public key
+ */
+export async function getTokenSupply(connection: Connection, account: PublicKey): Promise<TokenAmount> {
+  const res = await connection.getTokenSupply(account, 'confirmed')
+  return res.value
 }
