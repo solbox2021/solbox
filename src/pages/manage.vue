@@ -76,7 +76,7 @@ const clickAdd = function() {
       </div>
       <div class="flex flex-col col-span-6 items-end sm:col-span-1">
         <button
-          class="bg-primary rounded-full font-medium h-10 text-white w-full transition-colors duration-150 uppercase focus:outline-none focus:shadow-outline-purple active:bg-primary hover:bg-primary_dark"
+          class="bg-primary rounded-full font-medium h-10 text-white w-full transition-colors duration-150 filter uppercase focus:outline-none focus:shadow-outline-purple active:bg-primary hover:bg-primary_dark drop-shadow-xl hue-rotate-30"
           @click="clickAdd()"
         >
           {{ t('manage.add') }}
@@ -114,7 +114,7 @@ const clickAdd = function() {
 
           <div class="text-right col-span-1">
             <div
-              class="bg-white border-primary rounded-full cursor-pointer font-semibold border-2 text-center text-sm text-primary w-full max-w-32 py-1 px-2 focus:outline-none truncate inline-block align-middle hover:bg-primary_light dark:hover:bg-gray-900 dark:bg-gray-700"
+              class="bg-white rounded-full cursor-pointer font-semibold border-rose-400 border-2 text-center text-sm w-full max-w-32 py-1 px-2 text-rose-400 focus:outline-none truncate inline-block align-middle hover:bg-rose-200 dark:hover:bg-gray-900 dark:bg-gray-700"
               @click="deleteAccount(account.address)"
             >
               <p class="hidden sm:block">
@@ -128,3 +128,11 @@ const clickAdd = function() {
     </div>
   </div>
 </template>
+
+<route lang="js">
+  {
+    "meta": {
+      "tab": "manage"
+    }
+  }
+</route>

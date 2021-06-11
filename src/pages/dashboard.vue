@@ -10,10 +10,10 @@ import OrcaTokenList from '@/components/dashboard/OrcaTokenList.vue';
 import AssetsBoard from '@/components/dashboard/AssetsBoard.vue'
 import AccountsBoard from '@/components/dashboard/AccountsBoard.vue'
 import { Icon, addCollection } from '@iconify/vue'
-import ps from '@iconify/json/json/ps.json'
+import fxemoji from '@iconify/json/json/fxemoji.json'
 import { accountsStore } from "@/store";
 
-addCollection(ps)
+addCollection(fxemoji)
 const { t } = useI18n()
 
 const walletAssets = ref(0)
@@ -44,7 +44,7 @@ const walletAccounts = computed(() =>
       <AccountsBoard class="col-span-full sm:col-span-5 lg:col-span-4" />
     </div>
     <div class="flex font-bold mt-8 mb-4 text-2xl items-center">
-      <Icon icon="ps:wallet" class="h-6 text-primary mr-2 w-6" />
+      <Icon icon="fxemoji:moneybag" class="h-6 text-primary mr-2 w-6" />
       <p>
         {{ t('dashboard.wallet') }}
       </p>

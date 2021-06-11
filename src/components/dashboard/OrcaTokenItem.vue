@@ -91,7 +91,7 @@ watch(poolValue, (value) => {
 </script>
 
 <template>
-  <div v-if="info?.poolInfo" class="bg-white rounded-lg cursor-default shadow-sm my-2 grid py-3 px-4 transition-colors grid-cols-4 duration-300 items-center justify-between dark:bg-gray-800 hover:bg-purple-100 dark:hover:bg-purple-900">
+  <div v-if="info?.poolInfo" class="bg-white rounded-lg cursor-default shadow-sm my-2 grid py-3 px-4 transition-colors gap-2 grid-cols-4 duration-300 items-center justify-between dark:bg-gray-800 hover:bg-purple-100 dark:hover:bg-purple-900">
     <div class="flex flex-row col-span-1 items-center">
       <div class="rounded-full h-8 mr-3 w-8 hidden items-center md:flex">
         <img :src="tokenAInfo?.logoURI ?? 'https://placeholder.pics/svg/300x300/EEEEEE/EEEEEE'" class="rounded-full object-cover h-5 w-5" />
