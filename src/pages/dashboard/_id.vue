@@ -12,6 +12,7 @@ import AccountsBoard from '@/components/dashboard/AccountsBoard.vue'
 import { Icon, addCollection } from '@iconify/vue'
 import fxemoji from '@iconify/json/json/fxemoji.json'
 import { accountsStore } from "@/store";
+import { useRouter } from 'vue-router'
 
 addCollection(fxemoji)
 const { t } = useI18n()
@@ -20,28 +21,30 @@ const walletAssets = ref(0)
 const tobeClaimed = ref(0)
 const orcaAssets = ref(0)
 
-const walletAccounts = computed(() =>
-  accountsStore.getState()
-  .filter(({address}) =>
-    {
-      try {
-        const pub = new PublicKey(address)
-        return true
-      } catch (error) {
-        return false
-      }
-    }
-  )
-  .map(({address}) => new PublicKey(address) )
-)
-
+const searchText = computed(() => useRouter().currentRoute.value.params.id as string)
+const isValideAddress = function(address: string): boolean {
+  try {
+    const pub = new PublicKey(address)
+    return true
+  } catch (error) {
+    return false
+  }
+}
+const walletAccounts = computed(() => {
+  if (searchText.value && isValideAddress(searchText.value)) {
+    return [new PublicKey(searchText.value)]
+  } else
+    return accountsStore.getState()
+      .filter(({address}) => isValideAddress(address))
+      .map(({address}) => new PublicKey(address) )
+})
 </script>
 
 <template>
   <div class="container mx-auto px-6">
     <div class="my-6 grid gap-4 grid-cols-10">
       <AssetsBoard class="col-span-full sm:col-span-5 lg:col-span-6" :wallet-assets="walletAssets" :to-be-claimed="tobeClaimed" :lp-assets="orcaAssets" />
-      <AccountsBoard class="col-span-full sm:col-span-5 lg:col-span-4" />
+      <AccountsBoard class="col-span-full sm:col-span-5 lg:col-span-4" :wallets="isValideAddress(searchText) ? walletAccounts : undefined" />
     </div>
     <div class="flex font-bold mt-8 mb-4 text-2xl items-center">
       <Icon icon="fxemoji:moneybag" class="h-6 text-primary mr-2 w-6" />

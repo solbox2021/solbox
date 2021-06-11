@@ -1,11 +1,16 @@
 <script lang="ts">
-import { PropType } from 'vue'
+import { defineProps, PropType } from 'vue'
 </script>
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { accountsStore } from "@/store";
+import { PublicKey } from '@solana/web3.js';
 
 const { t } = useI18n()
+
+const props = defineProps({
+  wallets: Array as PropType<PublicKey[]>,
+})
 
 </script>
 
@@ -16,7 +21,21 @@ const { t } = useI18n()
         {{ t('dashboard.accounts') }}
       </p>
     </div>
-    <ul class="divide-y flex-grow flex-shrink mx-3 overflow-auto dark:divide-gray-600 sm:max-h-63 lg:max-h-48">
+    <ul v-if="wallets && wallets.length > 0" class="divide-y flex-grow flex-shrink mx-3 overflow-auto dark:divide-gray-600 sm:max-h-63 lg:max-h-48">
+      <li v-for="(account, index) in wallets" :key="index" class="flex flex-row py-1 justify-between items-center">
+        <div class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600">
+          {{ account.toString() }}
+        </div>
+        <div
+          class="rounded-lg cursor-default flex-none border-2 border-cyan-400 text-center py-1 px-2 w-22 hidden"
+        >
+          <p class="text-sm text-cyan-400 truncate">
+            Add
+          </p>
+        </div>
+      </li>
+    </ul>
+    <ul v-else class="divide-y flex-grow flex-shrink mx-3 overflow-auto dark:divide-gray-600 sm:max-h-63 lg:max-h-48">
       <li v-for="(account, index) in accountsStore.getState()" :key="index" class="flex flex-row py-1 justify-between items-center">
         <div class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600">
           {{ account.address }}
