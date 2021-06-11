@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineEmit, Ref, watch } from '@vue/runtime-core'
+import { computed, defineEmit, onActivated, onBeforeUpdate, onMounted, onUpdated, Ref, watch } from '@vue/runtime-core'
 import { PoolRes } from '@/utils/orca'
 import { PropType } from 'vue'
 </script>
@@ -26,13 +26,6 @@ const getAllOrcaPools = async function() {
   orcaPools.value = await getOrcaPools()
 }
 
-watch(() => props.wallets, (value, oldValue) => {
-  if(value && value.length > 0) {
-    getAllTokenAccounts(value)
-    getAllOrcaPools()
-  }
-}, { immediate: true })
-
 const orcaTokens = computed(() => {
   const orcaMints = Object.keys(orcaPools.value).map((key) => orcaPools.value[key].poolTokenMint)
   const tokens = allTokensAccounts.value
@@ -55,6 +48,15 @@ const emit = defineEmit([
 watch(orcaValue, (newValue, oldValue) => {
   emit('listValue', newValue)
 })
+
+watch(() => props.wallets, (value, oldValue) => {
+  poolValues.value = []
+  allTokensAccounts.value =[]
+  if(value && value.length > 0) {
+    getAllTokenAccounts(value)
+    getAllOrcaPools()
+  }
+}, { immediate: true })
 </script>
 
 <template>

@@ -34,13 +34,6 @@ const getSolBalance = async function(addresses: PublicKey[]) {
   solAccounts.value = await getMultiBalance(connection, addresses)
 }
 
-watch(() => props.wallets, (value, oldValue) => {
-  if(value && value.length > 0) {
-    getSolBalance(value)
-    getAllTokenAccounts(value)
-  }
-}, { immediate: true })
-
 const walletTokens = computed(() => {
   let tokens = allTokensAccounts.value
     .filter(({mint}) => (tokensStore.getTokenInfo(mint.toString()) != undefined))
@@ -65,6 +58,16 @@ const totalValue = computed(() => tokenValues.value.length > 0 ? tokenValues.val
 watch(totalValue, (newValue, oldValue) => {
   emit('listValue', newValue)
 })
+
+watch(() => props.wallets, (value, oldValue) => {
+  allTokensAccounts.value =[]
+  solAccounts.value = []
+  tokenValues.value = []
+  if(value && value.length > 0) {
+    getSolBalance(value)
+    getAllTokenAccounts(value)
+  }
+}, { immediate: true })
 
 </script>
 
