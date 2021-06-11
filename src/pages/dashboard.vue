@@ -16,8 +16,9 @@ import { accountsStore } from "@/store";
 addCollection(ps)
 const { t } = useI18n()
 
-const totalAssets = ref(0)
+const walletAssets = ref(0)
 const tobeClaimed = ref(0)
+const orcaAssets = ref(0)
 
 const walletAccounts = computed(() =>
   accountsStore.getState()
@@ -39,7 +40,7 @@ const walletAccounts = computed(() =>
 <template>
   <div class="container mx-auto px-6">
     <div class="my-6 grid gap-4 grid-cols-10">
-      <AssetsBoard class="col-span-full sm:col-span-5 lg:col-span-6" :total-assets="totalAssets" :to-be-claimed="tobeClaimed" />
+      <AssetsBoard class="col-span-full sm:col-span-5 lg:col-span-6" :wallet-assets="walletAssets" :to-be-claimed="tobeClaimed" :lp-assets="orcaAssets" />
       <AccountsBoard class="col-span-full sm:col-span-5 lg:col-span-4" />
     </div>
     <div class="flex font-bold mt-8 mb-4 text-2xl items-center">
@@ -48,8 +49,8 @@ const walletAccounts = computed(() =>
         {{ t('dashboard.wallet') }}
       </p>
     </div>
-    <SPLTokenList :wallets="walletAccounts" @list-value="totalAssets = $event" />
-    <OrcaTokenList :wallets="walletAccounts" />
+    <SPLTokenList :wallets="walletAccounts" @list-value="walletAssets = $event" />
+    <OrcaTokenList :wallets="walletAccounts" @list-value="orcaAssets = $event" />
   </div>
 </template>
 

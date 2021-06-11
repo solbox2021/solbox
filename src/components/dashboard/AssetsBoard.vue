@@ -9,7 +9,7 @@ addCollection(twemoji)
 const { t } = useI18n()
 
 const props = defineProps({
-  totalAssets: {
+  walletAssets: {
     type: Number,
     default: 0,
   },
@@ -17,9 +17,13 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+  lpAssets: {
+    type: Number,
+    default: 0,
+  },
 })
 
-const netWorth = computed(() => props.totalAssets + props.toBeClaimed)
+const totalAssets = computed(() => props.walletAssets + props.toBeClaimed + props.lpAssets)
 </script>
 
 <template>
@@ -28,28 +32,28 @@ const netWorth = computed(() => props.totalAssets + props.toBeClaimed)
       <Icon icon="twemoji:coin" class="h-22 mr-6 w-22 hidden lg:block" />
       <div class="mb-2 w-full">
         <p class="font-semibold text-md text-shadow-sm text-white mb-1 uppercase">
-          {{ t('dashboard.net-worth') }}
+          {{ t('dashboard.total-assets') }}
         </p>
         <p class="font-extrabold font-serif text-shadow-lg text-white tracking-tighter text-3xl oldstyle-nums overflow-ellipsis lg:text-4xl md:text-2xl">
-          ${{ netWorth?.toFixed(3) }}
+          ${{ totalAssets?.toFixed(3) }}
         </p>
       </div>
     </div>
     <div class="mt-5 mb-2 grid px-6 grid-cols-2">
       <div class="flex flex-col mb-2 col-span-2 justify-center lg:col-span-1">
         <p class="font-semibold text-sm text-gray-300 uppercase">
-          {{ t('dashboard.total-assets') }}
+          {{ t('dashboard.wallet') }}
         </p>
         <p class="font-serif text-2xl oldstyle-nums md:text-xl lg:text-2xl">
-          ${{ totalAssets.toFixed(3) }}
+          ${{ walletAssets.toFixed(3) }}
         </p>
       </div>
       <div class="flex flex-col mb-2 col-span-2 justify-center lg:col-span-1">
         <p class="font-semibold text-sm text-gray-300 uppercase">
-          {{ t('dashboard.to-be-claimed') }}
+          {{ t('dashboard.liquidity-pool') }}
         </p>
         <p class="font-serif text-2xl oldstyle-nums">
-          ${{ toBeClaimed.toFixed(3) }}
+          ${{ lpAssets.toFixed(3) }}
         </p>
       </div>
     </div>

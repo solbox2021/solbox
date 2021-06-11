@@ -10,6 +10,7 @@
   "dashboard": {
     "accounts": "Accounts",
     "balance": "Balance",
+    "liquidity-pool": "Liquidity Pool",
     "net-worth": "Net Worth",
     "price": "Price",
     "to-be-claimed": "To Be Claimed",

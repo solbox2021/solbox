@@ -43,15 +43,28 @@ const orcaTokens = computed(() => {
   })
   return pools
 })
+
+const poolValues: Ref<number[]> = ref([])
+const receiveUpdatedValue = function(index: number, value: number) {
+  poolValues.value[index] = value
+}
+const orcaValue = computed(() => poolValues.value.length > 0 ? poolValues.value.reduce((previous, current) => previous + current) : 0)
+const emit = defineEmit([
+  'listValue'
+])
+watch(orcaValue, (newValue, oldValue) => {
+  emit('listValue', newValue)
+})
 </script>
 
 <template>
   <div v-if="orcaTokens.length > 0" class="pt-6">
-    <div class="mb-4">
-      <p class="font-bold text-2xl">
+    <div class="flex mb-4 items-center">
+      <img src="https://www.orca.so/static/media/logomark.1ef55f8f.svg" class="h-6 w-6">
+      <p class="font-bold ml-2 text-2xl">
         ORCA
       </p>
     </div>
-    <OrcaTokenItem v-for="(info, index) in orcaTokens" :key="index" :info="info" />
+    <OrcaTokenItem v-for="(info, index) in orcaTokens" :key="index" :info="info" @pool-value="receiveUpdatedValue(index, $event)" />
   </div>
 </template>

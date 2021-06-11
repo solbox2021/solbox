@@ -10,6 +10,7 @@
   "dashboard": {
     "accounts": "账户",
     "balance": "余额",
+    "liquidity-pool": "流动性池",
     "net-worth": "净值",
     "price": "价格",
     "to-be-claimed": "待领取",

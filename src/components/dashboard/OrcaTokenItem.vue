@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Ref } from 'vue'
+import { defineEmit, Ref } from 'vue'
 import { OrcaAmountInfo } from '@/utils/orca'
 import { Price } from '@/utils/api'
 </script>
@@ -8,8 +8,14 @@ import { OrcaTokenAccountInfo, getOrcaAmountInfo } from '@/utils/orca'
 import { getTokenSupply } from '@/utils/web3'
 import { Connection, PublicKey } from '@solana/web3.js'
 import { computed, defineProps, watch, getCurrentInstance, ref } from 'vue'
-import { pricesStore } from '@/store'
+import { pricesStore, tokensStore } from '@/store'
 import { fetchPrice } from '@/utils/coingecko'
+import { useI18n } from 'vue-i18n'
+import { Icon, addCollection } from '@iconify/vue'
+import ri from '@iconify/json/json/ri.json'
+
+addCollection(ri)
+const { t } = useI18n()
 
 const props = defineProps({
   info: OrcaTokenAccountInfo,
@@ -42,6 +48,9 @@ async function fetchSupply(tokens: string[]) {
 // owned token A&B amount in this pool
 const tokenAAmount = computed(() => ratio.value * (tokenAAmountInPool.value as OrcaAmountInfo).amount / 10 ** (tokenAAmountInPool.value as OrcaAmountInfo).decimal)
 const tokenBAmount = computed(() => ratio.value * (tokenBAmountInPool.value as OrcaAmountInfo).amount / 10 ** (tokenBAmountInPool.value as OrcaAmountInfo).decimal)
+const tokenAInfo = computed(() => tokensStore.getTokenInfo((tokenAAmountInPool.value as OrcaAmountInfo).mint))
+const tokenBInfo = computed(() => tokensStore.getTokenInfo((tokenBAmountInPool.value as OrcaAmountInfo).mint))
+
 // token A & B price
 const tokenAPrice: Ref<Price | undefined> = ref()
 const tokenBPrice: Ref<Price | undefined> = ref()
@@ -71,10 +80,45 @@ watch(() => props.info, (value, oldValue) => {
   }
 }, { immediate: true })
 
+const poolValue = computed(() => tokenAValue.value + tokenBValue.value)
+const emit = defineEmit([
+  'poolValue'
+])
+watch(poolValue, (value) => {
+  emit("poolValue", value)
+})
+
 </script>
 
 <template>
-  <div v-if="info?.poolInfo" class="grid grid-cols-4">
-    {{ symbolName }}
+  <div v-if="info?.poolInfo" class="bg-white rounded-lg cursor-default shadow-sm my-2 grid py-3 px-4 transition-colors grid-cols-4 duration-300 items-center justify-between dark:bg-gray-800 hover:bg-purple-100 dark:hover:bg-purple-900">
+    <div class="flex flex-row col-span-1 items-center">
+      <div class="rounded-full h-8 mr-3 w-8 hidden items-center md:flex">
+        <img :src="tokenAInfo?.logoURI ?? 'https://placeholder.pics/svg/300x300/EEEEEE/EEEEEE'" class="rounded-full object-cover h-5 w-5" />
+        <img :src="tokenBInfo?.logoURI ?? 'https://placeholder.pics/svg/300x300/EEEEEE/EEEEEE'" class="rounded-full object-cover h-5 -ml-2 w-5" />
+      </div>
+      <div class="text-gray-800 dark:text-gray-300">
+        <p class="font-semibold text-sm lg:text-base">
+          {{ symbolName }}
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-col col-span-2 items-start">
+      <p class="text-sm text-gray-700 lg:text-xl dark:text-gray-200">
+        {{ `${tokenAAmount.toFixed(3)} ${info.poolInfo.tokenAName}` }} + {{ `${tokenBAmount.toFixed(3)} ${info.poolInfo.tokenBName}` }}
+      </p>
+      <p class="text-xs text-gray-300 dark:text-gray-600">
+        {{ t('dashboard.balance').toUpperCase() }}
+      </p>
+    </div>
+    <div class="flex flex-col col-span-1 items-end">
+      <div class="flex text-xl text-gray-700 items-center dark:text-gray-200">
+        <Icon icon="ri:money-dollar-circle-fill" class="h-5 mr-1 text-green-500 w-5" />
+        {{ (tokenAValue + tokenBValue)?.toFixed(2) }}
+      </div>
+      <p class="text-xs text-gray-300 dark:text-gray-600">
+        {{ t('dashboard.value').toUpperCase() }}
+      </p>
+    </div>
   </div>
 </template>
