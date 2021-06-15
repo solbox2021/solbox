@@ -5,13 +5,18 @@ import { defineProps, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { accountsStore } from "@/store";
 import { PublicKey } from '@solana/web3.js';
+import { useToast } from 'vue-toastification'
 
 const { t } = useI18n()
+const toast = useToast()
 
 const props = defineProps({
   wallets: Array as PropType<PublicKey[]>,
 })
 
+const copySuccess = () => {
+  toast.success(t('hint.copy-success'))
+}
 </script>
 
 <template>
@@ -23,7 +28,11 @@ const props = defineProps({
     </div>
     <ul v-if="wallets && wallets.length > 0" class="divide-y flex-grow flex-shrink mx-3 overflow-auto dark:divide-gray-600 sm:max-h-63 lg:max-h-48">
       <li v-for="(account, index) in wallets" :key="index" class="flex flex-row py-1 justify-between items-center">
-        <div class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600">
+        <div
+          v-clipboard:copy="account.toString()"
+          v-clipboard:success="copySuccess"
+          class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600"
+        >
           {{ account.toString() }}
         </div>
         <div
@@ -37,7 +46,11 @@ const props = defineProps({
     </ul>
     <ul v-else class="divide-y flex-grow flex-shrink mx-3 overflow-auto dark:divide-gray-600 sm:max-h-63 lg:max-h-48">
       <li v-for="(account, index) in accountsStore.getState()" :key="index" class="flex flex-row py-1 justify-between items-center">
-        <div class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600">
+        <div
+          v-clipboard:copy="account.address"
+          v-clipboard:success="copySuccess"
+          class="rounded-lg cursor-pointer flex-shrink font-mono text-sm mr-2 py-2 px-1 truncate hover:bg-gray-100 dark:hover:bg-gray-600"
+        >
           {{ account.address }}
         </div>
         <div

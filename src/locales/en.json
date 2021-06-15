@@ -19,6 +19,7 @@
     "wallet": "Wallet"
   },
   "hint": {
+    "copy-success": "Copy Success",
     "search": "Search by Address"
   },
   "intro": {

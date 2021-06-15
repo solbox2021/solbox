@@ -5,9 +5,11 @@ import { Icon, addCollection } from '@iconify/vue'
 import uil from '@iconify/json/json/uil.json'
 import { PublicKey } from '@solana/web3.js'
 import { useI18n } from 'vue-i18n'
+import { useToast } from 'vue-toastification'
 
 addCollection(uil)
 const { t } = useI18n()
+const toast = useToast()
 
 const VALIDATE_HINT = t('manage.valide-hint')
 const DUPLICATE_HINT = t('manage.duplicate-msg')
@@ -47,6 +49,10 @@ const clickAdd = function() {
     addrInputError.value = true
     addrInputErrorMsg.value = VALIDATE_HINT
   }
+}
+
+const copySuccess = () => {
+  toast.success(t('hint.copy-success'))
 }
 </script>
 
@@ -96,7 +102,8 @@ const clickAdd = function() {
           <span class="flex font-mono text-center col-span-5 items-center sm:col-span-4">
             <p class="truncate">{{ account.address }}</p>
             <div
-              v-clipboard="account.address"
+              v-clipboard:copy="account.address"
+              v-clipboard:success="copySuccess"
               class="rounded-full text-center p-1 leading-3 inline-block active:bg-blue-200"
             >
               <Icon icon="uil:copy" class="cursor-pointer text-cyan-600" />

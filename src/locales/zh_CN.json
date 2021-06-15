@@ -19,6 +19,7 @@
     "wallet": "钱包"
   },
   "hint": {
+    "copy-success": "复制成功",
     "search": "输入地址以搜索"
   },
   "intro": {
