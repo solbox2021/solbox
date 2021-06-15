@@ -8,13 +8,13 @@ class TokensStore extends Store<TokenInfo[]> {
 
   protected setup() {
     new TokenListProvider().resolve().then((tokens) => {
-      this.state = tokens.filterByChainId(ENV.MainnetBeta).getList()
+      this.state = tokens.filterByChainId(ENV.MainnetBeta).excludeByTag('lp-token').getList()
     })
   }
 
   refresh() {
     new TokenListProvider().resolve().then((tokens) => {
-      this.state = tokens.filterByChainId(ENV.MainnetBeta).getList()
+      this.state = tokens.filterByChainId(ENV.MainnetBeta).excludeByTag('lp-token').getList()
     })
   }
 
