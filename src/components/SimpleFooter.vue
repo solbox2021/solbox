@@ -8,7 +8,7 @@ const { t } = useI18n()
 
 </script>
 <template>
-  <footer class="flex flex-col py-2 px-6 items-center justify-between sm:flex-row">
+  <footer class="flex flex-row px-6 pt-2 pb-3 items-center justify-between backdrop-filter backdrop-blur-xl">
     <a href="#" class="font-bold text-xl text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"></a>
 
     <p class="text-sm py-2 text-gray-500 dark:text-white sm:py-0">

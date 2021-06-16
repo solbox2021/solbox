@@ -9,8 +9,8 @@ import SearchHeader from '@/components/SearchHeader.vue'
     <Sidebar />
     <div class="flex flex-col flex-1 w-full">
       <SearchHeader />
-      <router-view class="h-full overflow-y-auto" />
-      <SimpleFooter />
+      <router-view class="h-full pb-14 overflow-y-auto" />
+      <SimpleFooter class="right-0 -bottom-1 left-0 absolute md:left-64" />
     </div>
   </main>
 </template>
