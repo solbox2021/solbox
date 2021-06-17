@@ -35,6 +35,14 @@
     "saved": "已保存",
     "valide-hint": "请输入有效的Solana地址"
   },
+  "market": {
+    "1h": "1小时",
+    "24h": "24小时",
+    "7d": "7天",
+    "coin": "货币",
+    "mkt_cap": "总市值",
+    "price": "价格"
+  },
   "misc": {
     "address": "地址",
     "delete": "删除",

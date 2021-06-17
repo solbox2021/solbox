@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import CoinMarket from '@/components/market/CoinMarket.vue'
 
 const { t } = useI18n()
 </script>
@@ -7,9 +8,9 @@ const { t } = useI18n()
 <template>
   <div class="container mx-auto px-6">
     <div class="font-bold my-6 text-4xl">
-      {{ t('tab.market') }}
+      Coins
     </div>
-    <img src="@/assets/images/solanium.jpg">
+    <CoinMarket />
   </div>
 </template>
 

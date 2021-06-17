@@ -35,6 +35,14 @@
     "saved": "Saved",
     "valide-hint": "Please input valide Solana address"
   },
+  "market": {
+    "1h": "1h",
+    "24h": "24h",
+    "7d": "7d",
+    "coin": "Coin",
+    "mkt_cap": "Mkt Cap",
+    "price": "Price"
+  },
   "misc": {
     "address": "Address",
     "delete": "Delete",
