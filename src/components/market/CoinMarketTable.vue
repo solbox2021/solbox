@@ -9,8 +9,10 @@ import { fetchCoinMarket } from '@/utils/coingecko'
 import { onMounted, ref } from '@vue/runtime-core';
 import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
+import ph from '@iconify/json/json/ph.json'
 
 addCollection(ri)
+addCollection(ph)
 const { t } = useI18n()
 
 const coinMarkets: Ref<CoinMarket[]> = ref([])
@@ -79,13 +81,31 @@ onMounted(() => {
           class="text-right hidden lg:table-cell"
           :class="coin.market.price_change_percentage_1h_in_currency >= 0 ? 'text-green-500' : 'text-rose-400'"
         >
-          {{ coin.market.price_change_percentage_1h_in_currency?.toFixed(1) ?? '--' }}%
+          <div class="flex items-center justify-end">
+            <Icon
+              class="h-4 mr-1 w-4"
+              :icon="coin.market.price_change_percentage_1h_in_currency >= 0 ? 'ph:arrow-up-right-bold' : 'ph:arrow-down-right-bold'"
+            />
+            <p>{{ coin.market.price_change_percentage_1h_in_currency?.toFixed(1) ?? '--' }}%</p>
+          </div>
         </td>
         <td class="text-right" :class="coin.market.price_change_percentage_24h_in_currency >= 0 ? 'text-green-500' : 'text-rose-400'">
-          {{ coin.market.price_change_percentage_24h_in_currency?.toFixed(1) ?? '--' }}%
+          <div class="flex items-center justify-end">
+            <Icon
+              class="h-4 mr-1 w-4"
+              :icon="coin.market.price_change_percentage_24h_in_currency >= 0 ? 'ph:arrow-up-right-bold' : 'ph:arrow-down-right-bold'"
+            />
+            <p>{{ coin.market.price_change_percentage_24h_in_currency?.toFixed(1) ?? '--' }}%</p>
+          </div>
         </td>
         <td class="text-right hidden lg:table-cell" :class="coin.market.price_change_percentage_7d_in_currency >= 0 ? 'text-green-500' : 'text-rose-400'">
-          {{ coin.market.price_change_percentage_7d_in_currency?.toFixed(1) ?? '--' }}%
+          <div class="flex items-center justify-end">
+            <Icon
+              class="h-4 mr-1 w-4"
+              :icon="coin.market.price_change_percentage_7d_in_currency >= 0 ? 'ph:arrow-up-right-bold' : 'ph:arrow-down-right-bold'"
+            />
+            <p>{{ coin.market.price_change_percentage_7d_in_currency?.toFixed(1) ?? '--' }}%</p>
+          </div>
         </td>
         <td class="text-right hidden sm:table-cell">
           <div class="flex items-center justify-end">

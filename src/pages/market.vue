@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import CoinMarket from '@/components/market/CoinMarket.vue'
+import CoinMarketTable from '@/components/market/CoinMarketTable.vue'
 
 const { t } = useI18n()
 </script>
@@ -10,7 +10,7 @@ const { t } = useI18n()
     <div class="font-bold my-6 text-4xl">
       Coins
     </div>
-    <CoinMarket />
+    <CoinMarketTable />
   </div>
 </template>
 

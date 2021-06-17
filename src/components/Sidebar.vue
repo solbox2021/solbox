@@ -7,10 +7,12 @@ import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
 import maj from '@iconify/json/json/majesticons.json'
 import uil from '@iconify/json/json/uil.json'
+import foundation from '@iconify/json/json/foundation.json'
 
 addCollection(ri)
 addCollection(maj)
 addCollection(uil)
+addCollection(foundation)
 
 const { t, availableLocales, locale } = useI18n()
 
@@ -56,7 +58,7 @@ const router = useRouter()
             class="font-semibold text-sm w-full transition-colors duration-150 inline-flex items-center"
             :class="router.currentRoute.value.meta.tab == 'market' ? 'text-gray-800 dark:text-gray-100' : ''"
           >
-            <Icon icon="ri:stock-line" class="h-5 text-current w-5" />
+            <Icon icon="foundation:graph-trend" class="h-5 text-current w-5" />
             <span class="ml-4">{{ t('tab.market') }}</span>
           </a>
         </li>
