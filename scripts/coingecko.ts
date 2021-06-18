@@ -14,7 +14,7 @@ async function main() {
 
   const container = await splTokenProvider.resolve()
 
-  const splTokenList = container.filterByChainId(ENV.MainnetBeta).getList()
+  const splTokenList = container.filterByChainId(ENV.MainnetBeta).excludeByTag('bear').excludeByTag('bull').getList()
   console.log(`SPLToken list size: ${splTokenList.length}`)
 
   const infos = []
