@@ -58,7 +58,7 @@ onMounted(() => {
       >
         <td class="flex py-2 gap-2 items-center">
           <img
-            :src="coin.info?.logoURI"
+            :src="coin.market.image"
             :alt="coin.market.name"
             class="rounded-full h-6 w-6"
           >
