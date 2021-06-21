@@ -7,9 +7,11 @@ import { onMounted, ref } from 'vue'
 import { favoriteCoins } from '@/utils/storage'
 import { Icon, addCollection } from '@iconify/vue'
 import ic from '@iconify/json/json/ic.json'
+import ph from '@iconify/json/json/ph.json'
 
 const { t } = useI18n()
 addCollection(ic)
+addCollection(ph)
 
 const dialogOpen = ref(false)
 const setDialogOpen = function(v: boolean) {
@@ -44,10 +46,11 @@ onMounted(() => {
       <div
         v-for="(item, index) in tabs"
         :key="index"
-        class="cursor-pointer mx-2 py-1 px-4 transition text-orange-400 uppercase hover:opacity-80"
+        class="cursor-pointer mx-2 text-sm py-1 pr-4 pl-3 transition text-orange-400 inline-flex items-center uppercase sm:text-base hover:opacity-80"
         :class="currTab == index ? 'isActive' : '' "
         @click="clickTab(index)"
       >
+        <Icon :icon=" item.value == 0 ? 'ph:star-bold' : 'ph:fire-bold' " class="h-4 mr-1 leading-4 w-4" />
         {{ t(`market.${item.title}`) }}
       </div>
     </div>
@@ -61,15 +64,15 @@ onMounted(() => {
       <Icon icon="ic:outline-add-circle" class="h-5 mr-2 w-5" />
       {{ t('market.add_favorite') }}
     </div>
-  </div>
-  <Dialog :open="dialogOpen" class="inset-0 z-20 fixed overflow-y-auto" @close="setDialogOpen">
-    <div class="min-h-screen">
-      <DialogOverlay class="bg-black opacity-40 inset-0 fixed" />
-      <div class="bg-white rounded-xl mx-auto max-w-screen-lg h-2/3 my-24 p-6 inset-x-0 w-5/6 z-10 center fixed md:w-2/3 dark:(bg-gray-800)">
-        <SearchCoin class="h-full" />
+    <Dialog :open="dialogOpen" class="inset-0 z-20 fixed overflow-y-auto" @close="setDialogOpen">
+      <div class="min-h-screen">
+        <DialogOverlay class="bg-black opacity-40 inset-0 fixed" />
+        <div class="bg-white rounded-xl mx-auto max-w-screen-lg h-2/3 my-24 p-6 inset-x-0 w-5/6 z-10 center fixed md:w-2/3 dark:(bg-gray-800)">
+          <SearchCoin class="h-full" />
+        </div>
       </div>
-    </div>
-  </Dialog>
+    </Dialog>
+  </div>
 </template>
 
 <style>

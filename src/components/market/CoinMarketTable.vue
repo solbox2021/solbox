@@ -44,7 +44,6 @@ const fetchMarket = async function() {
     market: markets.find(({symbol}) => (symbol.toLowerCase() == tokenInfo?.symbol.toLowerCase()))
   }))
   isLoading.value = false
-  // coinMarkets.value = await fetchCoinMarket(props.listType == 0 ? favoriteCoins.value : HOT_COIN_MARKET)
 }
 
 watch(() => props.listType, (value, oldValue) => {
@@ -53,6 +52,7 @@ watch(() => props.listType, (value, oldValue) => {
 }, { immediate: true })
 
 watch(() => [...favoriteCoins.value], (newValue, oldValue) => {
+  if (props.listType != 0) return
   const newCoins = newValue.filter((value) => !oldValue.includes(value))
   if (newCoins.length > 0) {
     coinSymbols.value = newValue
@@ -75,13 +75,13 @@ const clickFavorite = function(symbol:string | undefined) {
   <div v-if="coinMarkets.length == 0" class="mt-8 text-center text-gray-500 dark:text-gray-300">
     {{ t('market.no_fav') }}
   </div>
-  <div v-else>
-    <table class="divide-y-2 mt-4 w-full table-auto dark:divide-gray-600">
+  <div v-else class="overflow-x-auto">
+    <table class="divide-y-2 mt-4 text-sm w-full table-auto sm:text-base dark:divide-gray-600">
       <thead>
         <tr>
           <th class="text-left">
-            <div class="h-5">
-              <Icon icon="ri:loader-3-line" class="h-5 px-1 text-orange-400 w-7" :class="isLoading ? 'animate-spin' : 'hidden'" />
+            <div class="cursor-pointer h-5" @click="fetchMarket()">
+              <Icon icon="ri:loader-3-line" class="h-5 px-1 text-orange-400 w-7" :class="isLoading ? 'animate-spin' : 'animate-none'" />
             </div>
           </th>
           <th class="text-left">
