@@ -1,6 +1,6 @@
 import coinGeckoIds from '@/assets/coingecko.json'
 import { Price, CoinGeckoApi, SIMPLE_PRICE_PATH, PriceRes, Market } from '@/utils/api'
-import { ENV, TokenInfo, TokenListProvider } from '@solana/spl-token-registry'
+import { TokenInfo } from '@solana/spl-token-registry'
 
 export const CommonTokenList = [
   'SOL',
@@ -52,10 +52,10 @@ export const HOT_COIN_MARKET = [
 
 export type CoinMarket = {
   info: TokenInfo | undefined
-  market: Market
+  market: Market | undefined
 }
 
-export async function fetchCoinMarket(coinSymbols: string[], currency = 'usd'): Promise<CoinMarket[]> {
+export async function fetchCoinMarket(coinSymbols: string[], currency = 'usd'): Promise<Market[]> {
   if (coinSymbols.length === 0) return []
   const coinIds = coinSymbols.map(value => getCoinGeckoId(value)).filter(value => value).join(',')
   const resp = await CoinGeckoApi.get<Market[]>('/coins/markets', {
@@ -67,9 +67,5 @@ export async function fetchCoinMarket(coinSymbols: string[], currency = 'usd'): 
       price_change_percentage: '1h,24h,7d',
     },
   })
-  const tokens = (await new TokenListProvider().resolve()).filterByChainId(ENV.MainnetBeta).excludeByTag('lp-token').getList()
-  return resp.data.map(value => ({
-    info: tokens.find(info => info.symbol.toLowerCase() === value.symbol.toLowerCase()),
-    market: value,
-  }))
+  return resp.data
 }

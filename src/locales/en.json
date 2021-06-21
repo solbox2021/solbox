@@ -43,6 +43,7 @@
     "coin": "Coin",
     "favorite": "Favorite",
     "mkt_cap": "Mkt Cap",
+    "no_fav": "No favorite yet",
     "popular": "Popular",
     "price": "Price"
   },

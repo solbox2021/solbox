@@ -47,4 +47,5 @@ export const SIMPLE_PRICE_PATH = '/simple/price'
 
 export const CoinGeckoApi = $axios.create({
   baseURL: 'https://api.coingecko.com/api/v3',
+  timeout: 30 * 1000,
 })

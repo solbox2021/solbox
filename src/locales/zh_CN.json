@@ -43,6 +43,7 @@
     "coin": "货币",
     "favorite": "自选",
     "mkt_cap": "总市值",
+    "no_fav": "还没有自选",
     "popular": "热门",
     "price": "价格"
   },
