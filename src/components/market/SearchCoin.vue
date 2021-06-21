@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import coinGeckoIds from '@/assets/coingecko.json'
+import { favoriteCoins } from '@/utils/storage'
+import { Icon, addCollection } from '@iconify/vue'
+import mdi from '@iconify/json/json/mdi.json'
+
+addCollection(mdi)
 
 const query = ref('')
 
 const searchRes = computed(() => coinGeckoIds.filter(({ symbol, name }) =>
   (symbol.toLowerCase().includes(query.value.toLowerCase()) || name.toLowerCase().includes(query.value.toLowerCase()))))
+
+const addFavorite = function(symbol: string) {
+  if (!favoriteCoins.value.includes(symbol))
+    favoriteCoins.value.push(symbol)
+}
 </script>
 
 <template>
@@ -38,9 +48,12 @@ const searchRes = computed(() => coinGeckoIds.filter(({ symbol, name }) =>
             </p>
           </div>
           <button
-            class="flex-none text-sm focus:outline-none btn"
+            class="flex-none h-7 text-sm w-16 focus:outline-none btn"
+            :disabled="favoriteCoins.includes(coin.symbol)"
+            @click="addFavorite(coin.symbol)"
           >
-            ADD
+            <Icon v-if="favoriteCoins.includes(coin.symbol)" icon="mdi:check" class="h-5 w-5"></Icon>
+            <span v-else>ADD</span>
           </button>
         </li>
       </ul>

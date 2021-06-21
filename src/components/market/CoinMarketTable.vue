@@ -1,5 +1,5 @@
 <script lang="ts">
-import { CoinMarket } from '@/utils/coingecko'
+import { CoinMarket, HOT_COIN_MARKET } from '@/utils/coingecko'
 import { Ref } from '@vue/runtime-core'
 
 </script>
@@ -10,27 +10,45 @@ import { onMounted, ref } from '@vue/runtime-core';
 import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
 import ph from '@iconify/json/json/ph.json'
+import ic from '@iconify/json/json/ic.json'
+import { favoriteCoins } from '@/utils/storage'
+import { defineProps, watch } from 'vue';
 
 addCollection(ri)
 addCollection(ph)
+addCollection(ic)
 const { t } = useI18n()
+
+const props = defineProps({
+  listType: Number,   //0 for favorite, 1 for popular
+})
 
 const coinMarkets: Ref<CoinMarket[]> = ref([])
 const fetchMarket = async function() {
-  coinMarkets.value = await fetchCoinMarket()
+  coinMarkets.value = await fetchCoinMarket(props.listType == 0 ? favoriteCoins.value : HOT_COIN_MARKET)
 }
-onMounted(() => {
+watch(() => props.listType, (value, oldValue) => {
   fetchMarket()
-})
+}, { immediate: true })
+
+const clickFavorite = function(symbol:string | undefined) {
+  if (!symbol) return
+  const index = favoriteCoins.value.indexOf(symbol)
+  console.log(`click ${symbol}: ${index}`)
+  if (index < 0) {
+    favoriteCoins.value.push(symbol)
+  } else {
+    favoriteCoins.value.splice(index, 1)
+  }
+}
+
 </script>
 <template>
-  <p class="my-2 text-xs text-right text-gray-300 dark:text-gray-700">
-    Powered by
-    <a class="underline underline-current" href="https://www.coingecko.com/">CoinGecko</a>
-  </p>
-  <table class="divide-y-2 w-full table-auto dark:divide-gray-600">
+  <table class="divide-y-2 mt-4 w-full table-auto dark:divide-gray-600">
     <thead>
       <tr>
+        <th class="text-center">
+        </th>
         <th class="text-left">
           {{ t('market.coin') }}
         </th>
@@ -56,15 +74,23 @@ onMounted(() => {
         v-for="coin in coinMarkets"
         :key="coin.info?.symbol"
       >
+        <td class="text-left">
+          <div class="h-5">
+            <Icon
+              :icon=" favoriteCoins.includes(coin.info?.symbol ?? '') ? 'ic:round-star' : 'ic:round-star-border' "
+              class="cursor-pointer h-5 px-1 text-yellow-300 w-7"
+              @click="clickFavorite(coin.info?.symbol)"
+            />
+          </div>
+        </td>
         <td class="flex py-2 gap-2 items-center">
           <img
             :src="coin.market.image"
-            :alt="coin.market.name"
             class="rounded-full h-6 w-6"
           >
           <div>
-            <p class="font-bold">
-              {{ coin.info?.symbol }}
+            <p class="font-bold uppercase">
+              {{ coin.info?.symbol ?? coin.market.symbol }}
             </p>
             <p class="font-light text-xs text-gray-400 dark:text-gray-500">
               {{ coin.market.name }}
@@ -116,4 +142,8 @@ onMounted(() => {
       </tr>
     </tbody>
   </table>
+  <p class="my-2 text-xs text-right text-gray-300 dark:text-gray-700">
+    Powered by
+    <a class="underline underline-current" href="https://www.coingecko.com/">CoinGecko</a>
+  </p>
 </template>

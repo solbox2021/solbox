@@ -35,7 +35,7 @@ export async function fetchPrice(coinSymbol: string | undefined, currency = 'usd
   return resp.data[id]
 }
 
-const HOT_COIN_MARKET = [
+export const HOT_COIN_MARKET = [
   'SOL',
   'LINK',
   'OXY',
@@ -55,7 +55,8 @@ export type CoinMarket = {
   market: Market
 }
 
-export async function fetchCoinMarket(coinSymbols: string[] = HOT_COIN_MARKET, currency = 'usd'): Promise<CoinMarket[]> {
+export async function fetchCoinMarket(coinSymbols: string[], currency = 'usd'): Promise<CoinMarket[]> {
+  if (coinSymbols.length === 0) return []
   const coinIds = coinSymbols.map(value => getCoinGeckoId(value)).filter(value => value).join(',')
   const resp = await CoinGeckoApi.get<Market[]>('/coins/markets', {
     params: {

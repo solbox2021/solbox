@@ -39,8 +39,11 @@
     "1h": "1h",
     "24h": "24h",
     "7d": "7d",
+    "add_favorite": "Add Favorites",
     "coin": "Coin",
+    "favorite": "Favorite",
     "mkt_cap": "Mkt Cap",
+    "popular": "Popular",
     "price": "Price"
   },
   "misc": {
