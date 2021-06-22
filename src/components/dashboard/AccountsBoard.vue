@@ -26,6 +26,12 @@ const copySuccess = () => {
         {{ t('dashboard.accounts') }}
       </p>
     </div>
+    <div
+      v-if=" wallets == undefined && accountsStore.getState().length == 0 "
+      class="font-semibold mt-6 text-center text-gray-500 dark:text-gray-400"
+    >
+      {{ t('hint.no-accounts') }}
+    </div>
     <ul v-if="wallets && wallets.length > 0" class="divide-y flex-grow flex-shrink mx-3 overflow-auto dark:divide-gray-600 sm:max-h-63 lg:max-h-48">
       <li v-for="(account, index) in wallets" :key="index" class="flex flex-row py-1 justify-between items-center">
         <div

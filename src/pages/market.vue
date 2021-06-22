@@ -58,7 +58,7 @@ onMounted(() => {
     <CoinMarketTable :list-type="currTab" />
     <div
       v-if="currTab == 0"
-      class="border-primary rounded-lg cursor-pointer flex font-semibold mx-auto border-2 mt-16 text-primary max-w-48 py-1 px-4 justify-center items-center dark:(text-violet-300 border-violet-300) hover:opacity-80"
+      class="rounded-lg cursor-pointer flex font-semibold mx-auto border-orange-600 border-2 mt-16 max-w-48 py-1 px-4 text-orange-600 justify-center items-center dark:(text-orange-300 border-orange-300) hover:opacity-80"
       @click="setDialogOpen(true)"
     >
       <Icon icon="ic:outline-add-circle" class="h-5 mr-2 w-5" />

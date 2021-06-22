@@ -9,6 +9,7 @@
   },
   "dashboard": {
     "accounts": "Accounts",
+    "add-account": "Go to add account",
     "balance": "Balance",
     "liquidity-pool": "Liquidity Pool",
     "net-worth": "Net Worth",
@@ -20,6 +21,7 @@
   },
   "hint": {
     "copy-success": "Copy Success",
+    "no-accounts": "No Account",
     "search": "Search by Address"
   },
   "intro": {

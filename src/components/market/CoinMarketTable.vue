@@ -81,7 +81,7 @@ const clickFavorite = function(symbol:string | undefined) {
         <tr>
           <th class="text-left">
             <div class="cursor-pointer h-5" @click="fetchMarket()">
-              <Icon icon="ri:loader-3-line" class="h-5 px-1 text-orange-400 w-7" :class="isLoading ? 'animate-spin' : 'animate-none'" />
+              <Icon icon="ri:loader-3-line" class="rounded-xl h-5 px-1 text-orange-400 w-7 hover:(bg-gray-200)" :class="isLoading ? 'animate-spin' : 'animate-none'" />
             </div>
           </th>
           <th class="text-left">

@@ -9,6 +9,7 @@
   },
   "dashboard": {
     "accounts": "账户",
+    "add-account": "前往添加账户",
     "balance": "余额",
     "liquidity-pool": "流动性池",
     "net-worth": "净值",
@@ -20,6 +21,7 @@
   },
   "hint": {
     "copy-success": "复制成功",
+    "no-accounts": "暂无账户",
     "search": "输入地址以搜索"
   },
   "intro": {

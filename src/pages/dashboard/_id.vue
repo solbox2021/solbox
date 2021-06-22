@@ -16,6 +16,7 @@ import { useRouter } from 'vue-router'
 
 addCollection(fxemoji)
 const { t } = useI18n()
+const router = useRouter()
 
 const walletAssets = ref(0)
 const tobeClaimed = ref(0)
@@ -51,6 +52,14 @@ const walletAccounts = computed(() => {
       <p>
         {{ t('dashboard.wallet') }}
       </p>
+    </div>
+    <div v-if="walletAccounts.length == 0" class="my-8">
+      <button
+        class="border border-primary rounded-lg text-primary w-full py-2 px-4 uppercase dark:(border-primary_light text-primary_light) hover:opacity-60"
+        @click="router.push('/manage')"
+      >
+        {{ t('dashboard.add-account') }}
+      </button>
     </div>
     <SPLTokenList :wallets="walletAccounts" @list-value="walletAssets = $event" />
     <OrcaTokenList :wallets="walletAccounts" @list-value="orcaAssets = $event" />
