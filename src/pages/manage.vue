@@ -11,11 +11,8 @@ addCollection(uil)
 const { t } = useI18n()
 const toast = useToast()
 
-const VALIDATE_HINT = t('manage.valide-hint')
-const DUPLICATE_HINT = t('manage.duplicate-msg')
-
 const addrInputError = ref(false)
-const addrInputErrorMsg = ref(VALIDATE_HINT)
+const addrInputErrorMsg = ref(t('manage.valide-hint'))
 const inputAddr = ref('')
 const inputTag = ref('')
 
@@ -32,13 +29,13 @@ const clickAdd = function() {
     const validate = new PublicKey(inputAddr.value)
     if (!PublicKey.isOnCurve(validate.toBytes())) {
       addrInputError.value = true
-      addrInputErrorMsg.value = VALIDATE_HINT
+      addrInputErrorMsg.value = t('manage.valide-hint')
       return
     }
     const res = accountsStore.addAccount(inputAddr.value, inputTag.value)
     if (!res) {
       addrInputError.value = true
-      addrInputErrorMsg.value = DUPLICATE_HINT
+      addrInputErrorMsg.value = t('manage.duplicate-msg')
       return
     }
     inputAddr.value = ''
@@ -47,7 +44,7 @@ const clickAdd = function() {
   }
   catch (error) {
     addrInputError.value = true
-    addrInputErrorMsg.value = VALIDATE_HINT
+    addrInputErrorMsg.value = t('manage.valide-hint')
   }
 }
 

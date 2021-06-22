@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { Icon, addCollection } from '@iconify/vue'
 import bx from '@iconify/json/json/bx.json'
 import ic from '@iconify/json/json/ic.json'
+import cil from '@iconify/json/json/cil.json'
 import ri from '@iconify/json/json/ri.json'
 import maj from '@iconify/json/json/majesticons.json'
 import uil from '@iconify/json/json/uil.json'
@@ -13,6 +14,7 @@ import { isDark, toggleDark } from '@/utils'
 
 addCollection(bx)
 addCollection(ic)
+addCollection(cil)
 const { t, availableLocales, locale } = useI18n()
 const router = useRouter()
 
@@ -79,13 +81,13 @@ const showMenu = ref(false)
                 <span class="ml-4">{{ t('tab.market') }}</span>
               </a>
             </li>
-            <li class="cursor-pointer py-3 px-6 relative hover:bg-gray-100 dark:hover:bg-gray-700" @click="router.push('/dapps');showMenu = !showMenu">
+            <li class="cursor-pointer py-3 px-6 relative hover:bg-gray-100 dark:hover:bg-gray-700" @click="router.push('/arbitrage');showMenu = !showMenu">
               <a
                 class="font-semibold text-sm w-full transition-colors duration-150 inline-flex items-center"
-                :class="router.currentRoute.value.meta.tab == 'dapps' ? 'text-primary' : ''"
+                :class="router.currentRoute.value.meta.tab == 'arbitrage' ? 'text-primary' : ''"
               >
-                <Icon icon="ri:apps-line" class="h-5 text-current w-5" />
-                <span class="ml-4">{{ t('tab.dapps') }}</span>
+                <Icon icon="cil:spreadsheet" class="h-5 text-current w-5" />
+                <span class="ml-4">{{ t('tab.arbitrage') }}</span>
               </a>
             </li>
           </ul>

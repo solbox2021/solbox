@@ -51,12 +51,15 @@
   },
   "misc": {
     "address": "Address",
+    "coming": "Coming soon",
+    "coming-desc": "SOLBOX will help users discovering low-risk arbitrage trading opportunities.",
     "delete": "Delete",
     "right-reserved": "All rights reserved",
     "tag": "Tag"
   },
   "not-found": "This page could not be found.",
   "tab": {
+    "arbitrage": "Arbitrage",
     "dapps": "Dapps",
     "dashboard": "Dashboard",
     "manage": "Manage Accounts",

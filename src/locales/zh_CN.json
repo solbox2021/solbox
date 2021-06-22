@@ -51,12 +51,15 @@
   },
   "misc": {
     "address": "地址",
+    "coming": "即将上线",
+    "coming-desc": "SOLBOX致力于通过数据挖掘发现市场中的低风险套利机会。",
     "delete": "删除",
     "right-reserved": "All rights reserved",
     "tag": "标签"
   },
   "not-found": "未找到页面",
   "tab": {
+    "arbitrage": "套利",
     "dapps": "Dapps",
     "dashboard": "看板",
     "manage": "账户管理",
