@@ -37,7 +37,7 @@ export default defineComponent({
         v-model="query"
         type="search"
         placeholder="Search token symbol or name"
-        class="outline-none w-full py-1 text-gray-600 sm:text-xl dark:(bg-gray-800 text-light-600)"
+        class="outline-none w-full py-1 text-gray-600 sm:text-xl dark:bg-gray-800 dark:text-light-600"
       >
     </div>
     <div class="flex-grow mt-1 overflow-auto">

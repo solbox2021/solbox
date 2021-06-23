@@ -69,7 +69,7 @@ export default defineComponent({
     </div>
     <div v-if="walletAccounts.length == 0" class="my-8">
       <button
-        class="border border-primary rounded-lg text-primary w-full py-2 px-4 uppercase dark:(border-primary_light text-primary_light) hover:opacity-60"
+        class="border border-primary rounded-lg text-primary w-full py-2 px-4 uppercase dark:border-primary_light dark:text-primary_light hover:opacity-60"
         @click="router.push('/manage')"
       >
         {{ t('dashboard.add-account') }}

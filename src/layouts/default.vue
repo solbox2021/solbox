@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <main class="flex font-sans h-screen bg-light-100 text-gray-700 dark:(text-gray-200 bg-gray-900)">
+  <main class="flex font-sans h-screen bg-light-100 text-gray-700 dark:text-gray-200 dark:bg-gray-900">
     <Sidebar />
     <div class="flex flex-col flex-1 w-full">
       <SearchHeader />

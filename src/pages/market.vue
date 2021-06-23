@@ -70,7 +70,7 @@ export default defineComponent({
     <CoinMarketTable :list-type="currTab" />
     <div
       v-if="currTab == 0"
-      class="rounded-lg cursor-pointer flex font-semibold mx-auto border-orange-600 border-2 mt-16 max-w-48 py-1 px-4 text-orange-600 justify-center items-center dark:(text-orange-300 border-orange-300) hover:opacity-80"
+      class="rounded-lg cursor-pointer flex font-semibold mx-auto border-orange-600 border-2 mt-16 max-w-48 py-1 px-4 text-orange-600 justify-center items-center dark:text-orange-300 dark:border-orange-300 hover:opacity-80"
       @click="setDialogOpen(true)"
     >
       <Icon icon="ic:outline-add-circle" class="h-5 mr-2 w-5" />
@@ -79,7 +79,7 @@ export default defineComponent({
     <Dialog :open="dialogOpen" class="inset-0 z-20 fixed overflow-y-auto" @close="setDialogOpen">
       <div class="min-h-screen">
         <DialogOverlay class="bg-black opacity-40 inset-0 fixed" />
-        <div class="bg-white rounded-xl mx-auto max-w-screen-lg h-2/3 my-24 p-6 inset-x-0 w-5/6 z-10 center fixed md:w-2/3 dark:(bg-gray-800)">
+        <div class="bg-white rounded-xl mx-auto max-w-screen-lg h-2/3 my-24 p-6 inset-x-0 w-5/6 z-10 center fixed md:w-2/3 dark:bg-gray-800">
           <SearchCoin class="h-full" />
         </div>
       </div>

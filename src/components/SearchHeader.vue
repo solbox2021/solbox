@@ -80,7 +80,7 @@ export default defineComponent({
           @click="showMenu = !showMenu"
         >
         </div>
-        <div class="bg-white mt-3.5 w-full top-12 left-0 z-10 fixed dark:(bg-gray-800)">
+        <div class="bg-white mt-3.5 w-full top-12 left-0 z-10 fixed dark:bg-gray-800">
           <ul class="w-full text-gray-700 dark:text-gray-300">
             <li class="cursor-pointer w-full py-3 px-6 relative hover:bg-gray-100 dark:hover:bg-gray-700" @click="router.push('/dashboard');showMenu = !showMenu">
               <div
@@ -130,7 +130,7 @@ export default defineComponent({
           </div>
           <input
             v-model.trim="search"
-            class="rounded-md bg-gray-100 h-8 text-sm w-full pr-2 pl-8 placeholder-gray-600 text-gray-700 form-input focus:(bg-white border-3 border-primary_light outline-none placeholder-gray-500) dark:(bg-gray-700 text-gray-200 placeholder-gray-500) dark:focus:(placeholder-gray-600)"
+            class="rounded-md bg-gray-100 h-8 text-sm w-full pr-2 pl-8 placeholder-gray-600 text-gray-700 form-input focus:bg-white focus:border-primary_light focus:outline-none focus:border-3 focus:placeholder-gray-500 dark:bg-gray-700 dark:text-gray-200 dark:placeholder-gray-500 dark:focus:placeholder-gray-600"
             type="text"
             :placeholder="t('hint.search')"
             aria-label="Search"
