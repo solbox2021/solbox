@@ -1,7 +1,15 @@
-<script setup lang="ts">
+<script lang="ts">
 import Sidebar from '@/components/Sidebar.vue'
 import SimpleFooter from '@/components/SimpleFooter.vue'
 import SearchHeader from '@/components/SearchHeader.vue'
+import { defineComponent } from '@vue/runtime-core'
+export default defineComponent({
+  components: {
+    Sidebar,
+    SimpleFooter,
+    SearchHeader,
+  },
+})
 </script>
 
 <template>

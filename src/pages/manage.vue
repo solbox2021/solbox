@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { computed, getCurrentInstance, onMounted, ref } from '@vue/runtime-core'
+<script lang="ts">
+import { defineComponent, ref } from '@vue/runtime-core'
 import { accountsStore } from '@/store'
 import { Icon, addCollection } from '@iconify/vue'
 import uil from '@iconify/json/json/uil.json'
@@ -7,52 +7,67 @@ import { PublicKey } from '@solana/web3.js'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
 
-addCollection(uil)
-const { t } = useI18n()
-const toast = useToast()
+export default defineComponent({
+  components: { Icon },
+  setup() {
+    addCollection(uil)
+    const { t } = useI18n()
+    const toast = useToast()
 
-const addrInputError = ref(false)
-const addrInputErrorMsg = ref(t('manage.valide-hint'))
-const inputAddr = ref('')
-const inputTag = ref('')
+    const addrInputError = ref(false)
+    const addrInputErrorMsg = ref(t('manage.valide-hint'))
+    const inputAddr = ref('')
+    const inputTag = ref('')
 
-const accounts = accountsStore.getState()
+    const accounts = accountsStore.getState()
 
-const deleteAccount = function(account: string) {
-  const ass = confirm(t('manage.delete-alert'))
-  if (ass)
-    accountsStore.removeAccount(account)
-}
-
-const clickAdd = function() {
-  try {
-    const validate = new PublicKey(inputAddr.value)
-    if (!PublicKey.isOnCurve(validate.toBytes())) {
-      addrInputError.value = true
-      addrInputErrorMsg.value = t('manage.valide-hint')
-      return
+    const deleteAccount = function(account: string) {
+      const ass = confirm(t('manage.delete-alert'))
+      if (ass)
+        accountsStore.removeAccount(account)
     }
-    const res = accountsStore.addAccount(inputAddr.value, inputTag.value)
-    if (!res) {
-      addrInputError.value = true
-      addrInputErrorMsg.value = t('manage.duplicate-msg')
-      return
-    }
-    inputAddr.value = ''
-    inputTag.value = ''
-    addrInputError.value = false
-  }
-  catch (error) {
-    addrInputError.value = true
-    addrInputErrorMsg.value = t('manage.valide-hint')
-  }
-}
 
-const copySuccess = () => {
-  toast.success(t('hint.copy-success'))
-}
+    const clickAdd = function() {
+      try {
+        const validate = new PublicKey(inputAddr.value)
+        if (!PublicKey.isOnCurve(validate.toBytes())) {
+          addrInputError.value = true
+          addrInputErrorMsg.value = t('manage.valide-hint')
+          return
+        }
+        const res = accountsStore.addAccount(inputAddr.value, inputTag.value)
+        if (!res) {
+          addrInputError.value = true
+          addrInputErrorMsg.value = t('manage.duplicate-msg')
+          return
+        }
+        inputAddr.value = ''
+        inputTag.value = ''
+        addrInputError.value = false
+      }
+      catch (error) {
+        addrInputError.value = true
+        addrInputErrorMsg.value = t('manage.valide-hint')
+      }
+    }
+
+    const copySuccess = () => {
+      toast.success(t('hint.copy-success'))
+    }
+    return {
+      t,
+      inputAddr,
+      inputTag,
+      addrInputError,
+      addrInputErrorMsg,
+      accounts,
+      clickAdd,
+      copySuccess,
+      deleteAccount,
+    }
+  },
+})
 </script>
-
 <template>
   <div class="container mx-auto px-6">
     <div class="bg-white rounded-2xl shadow-lg mt-6 w-full grid p-6 gap-4 grid-cols-6 dark:bg-gray-800">

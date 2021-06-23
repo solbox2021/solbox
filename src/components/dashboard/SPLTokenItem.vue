@@ -1,55 +1,55 @@
 <script lang="ts">
-import { PriceRes } from '@/utils/api'
-
-</script>
-<script setup lang="ts">
+import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { computed, defineEmit, defineProps, initCustomFormatter, watch } from '@vue/runtime-core'
 import { TokenAccountInfo } from '@/utils/web3'
 import { pricesStore } from '@/store'
 import { asyncComputed } from '@vueuse/core'
-import { ref } from 'vue'
 import { CoinGeckoApi, SIMPLE_PRICE_PATH } from '@/utils/api'
 import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
 import { getCoinGeckoId, fetchPrice } from '@/utils/coingecko'
 
-addCollection(ri)
-
-const { t } = useI18n()
-
-const props = defineProps({
-  info: TokenAccountInfo,
-})
-
-const emit = defineEmit([
-  'tokenValue'
-])
-
-const balance = computed(() => props.info?.tokenInfo ? props.info.amount / 10 ** props.info.tokenInfo.decimals : 0)
-const commonPrice = computed(() => pricesStore.getPrice(props.info?.tokenInfo?.symbol))
-const price = ref(0)
-const evaluating = ref(false)
-const tokenValue = asyncComputed(
-  async() => {
-    if (commonPrice.value) {
-      price.value = commonPrice.value.usd
-      return balance.value * commonPrice.value.usd
-    }
-    else {
-      const fetchedPrice = await fetchPrice(props.info?.tokenInfo?.symbol)
-      if (!fetchedPrice) return 0
-      price.value = fetchedPrice.usd
-      return fetchedPrice.usd * balance.value
+export default defineComponent({
+  components: { Icon },
+  props: {
+    info: TokenAccountInfo,
+  },
+  emits: ['tokenValue'],
+  setup(props, { emit }) {
+    addCollection(ri)
+    const { t } = useI18n()
+    const balance = computed(() => props.info?.tokenInfo ? props.info.amount / 10 ** props.info.tokenInfo.decimals : 0)
+    const commonPrice = computed(() => pricesStore.getPrice(props.info?.tokenInfo?.symbol))
+    const price = ref(0)
+    const evaluating = ref(false)
+    const tokenValue = asyncComputed(
+      async() => {
+        if (commonPrice.value) {
+          price.value = commonPrice.value.usd
+          return balance.value * commonPrice.value.usd
+        }
+        else {
+          const fetchedPrice = await fetchPrice(props.info?.tokenInfo?.symbol)
+          if (!fetchedPrice) return 0
+          price.value = fetchedPrice.usd
+          return fetchedPrice.usd * balance.value
+        }
+      },
+      null,
+      { lazy: true, evaluating },
+    )
+    watch(tokenValue, (newValue, oldValue) => {
+      emit('tokenValue', newValue)
+    })
+    return {
+      t,
+      balance,
+      price,
+      tokenValue,
     }
   },
-  null,
-  { lazy: true, evaluating },
-)
-watch(tokenValue, (newValue, oldValue) => {
-  emit('tokenValue', newValue)
 })
-
 </script>
 
 <template>

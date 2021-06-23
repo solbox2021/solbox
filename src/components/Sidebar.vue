@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts">
 import { useI18n } from 'vue-i18n'
 import { Switch } from '@headlessui/vue'
 import { useRouter } from 'vue-router'
@@ -8,22 +8,33 @@ import ri from '@iconify/json/json/ri.json'
 import maj from '@iconify/json/json/majesticons.json'
 import uil from '@iconify/json/json/uil.json'
 import cil from '@iconify/json/json/cil.json'
+import { defineComponent } from '@vue/runtime-core'
 
-addCollection(ri)
-addCollection(maj)
-addCollection(uil)
-addCollection(cil)
-
-const { t, availableLocales, locale } = useI18n()
-
-const toggleLocales = () => {
-  // change to some real logic
-  const locales = availableLocales
-  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
-}
-
-const router = useRouter()
-
+export default defineComponent({
+  components: {
+    Icon,
+    Switch,
+  },
+  setup() {
+    addCollection(ri)
+    addCollection(maj)
+    addCollection(uil)
+    addCollection(cil)
+    const { t, availableLocales, locale } = useI18n()
+    const toggleLocales = () => {
+      // change to some real logic
+      const locales = availableLocales
+      locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+    }
+    const router = useRouter()
+    return {
+      isDark,
+      t,
+      toggleLocales,
+      router,
+    }
+  },
+})
 </script>
 
 <!-- Desktop sidebar -->

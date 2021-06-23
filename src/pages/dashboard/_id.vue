@@ -1,46 +1,60 @@
 <script lang="ts">
-import { Ref } from '@vue/runtime-core'
-</script>
-<script setup lang="ts">
-import { computed, getCurrentInstance, onMounted, ref } from '@vue/runtime-core'
+import { computed, defineComponent, ref } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
-import { Connection, PublicKey } from '@solana/web3.js'
+import { PublicKey } from '@solana/web3.js'
 import SPLTokenList from '@/components/dashboard/SPLTokenList.vue'
-import OrcaTokenList from '@/components/dashboard/OrcaTokenList.vue';
+import OrcaTokenList from '@/components/dashboard/OrcaTokenList.vue'
 import AssetsBoard from '@/components/dashboard/AssetsBoard.vue'
 import AccountsBoard from '@/components/dashboard/AccountsBoard.vue'
 import { Icon, addCollection } from '@iconify/vue'
 import fxemoji from '@iconify/json/json/fxemoji.json'
-import { accountsStore } from "@/store";
+import { accountsStore } from '@/store'
 import { useRouter } from 'vue-router'
 
-addCollection(fxemoji)
-const { t } = useI18n()
-const router = useRouter()
+export default defineComponent({
+  components: { Icon, AssetsBoard, AccountsBoard, SPLTokenList, OrcaTokenList },
+  setup() {
+    addCollection(fxemoji)
+    const { t } = useI18n()
+    const router = useRouter()
 
-const walletAssets = ref(0)
-const tobeClaimed = ref(0)
-const orcaAssets = ref(0)
+    const walletAssets = ref(0)
+    const tobeClaimed = ref(0)
+    const orcaAssets = ref(0)
 
-const searchText = computed(() => useRouter().currentRoute.value.params.id as string)
-const isValideAddress = function(address: string): boolean {
-  try {
-    const pub = new PublicKey(address)
-    return true
-  } catch (error) {
-    return false
-  }
-}
-const walletAccounts = computed(() => {
-  if (searchText.value && isValideAddress(searchText.value)) {
-    return [new PublicKey(searchText.value)]
-  } else
-    return accountsStore.getState()
-      .filter(({address}) => isValideAddress(address))
-      .map(({address}) => new PublicKey(address) )
+    const searchText = computed(() => useRouter().currentRoute.value.params.id as string)
+    const isValideAddress = function(address: string): boolean {
+      try {
+        const pub = new PublicKey(address)
+        return true
+      }
+      catch (error) {
+        return false
+      }
+    }
+    const walletAccounts = computed(() => {
+      if (searchText.value && isValideAddress(searchText.value)) {
+        return [new PublicKey(searchText.value)]
+      }
+      else {
+        return accountsStore.getState()
+          .filter(({ address }) => isValideAddress(address))
+          .map(({ address }) => new PublicKey(address))
+      }
+    })
+    return {
+      t,
+      router,
+      walletAssets,
+      tobeClaimed,
+      orcaAssets,
+      walletAccounts,
+      searchText,
+      isValideAddress,
+    }
+  },
 })
 </script>
-
 <template>
   <div class="container mx-auto px-6">
     <div class="my-6 grid gap-4 grid-cols-10">

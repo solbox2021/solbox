@@ -1,29 +1,37 @@
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { computed, ref } from '@vue/runtime-core'
 import { Icon, addCollection } from '@iconify/vue'
 import twemoji from '@iconify/json/json/twemoji.json'
-import { defineProps } from 'vue'
 
-addCollection(twemoji)
-const { t } = useI18n()
+export default defineComponent({
+  components: { Icon },
+  props: {
+    walletAssets: {
+      type: Number,
+      default: 0,
+    },
+    toBeClaimed: {
+      type: Number,
+      default: 0,
+    },
+    lpAssets: {
+      type: Number,
+      default: 0,
+    },
+  },
+  setup(props) {
+    addCollection(twemoji)
+    const { t } = useI18n()
+    const totalAssets = computed(() => props.walletAssets + props.toBeClaimed + props.lpAssets)
 
-const props = defineProps({
-  walletAssets: {
-    type: Number,
-    default: 0,
-  },
-  toBeClaimed: {
-    type: Number,
-    default: 0,
-  },
-  lpAssets: {
-    type: Number,
-    default: 0,
+    return {
+      t,
+      totalAssets,
+    }
   },
 })
-
-const totalAssets = computed(() => props.walletAssets + props.toBeClaimed + props.lpAssets)
 </script>
 
 <template>

@@ -1,62 +1,68 @@
 <script lang="ts">
-import { computed, defineEmit, onActivated, onBeforeUpdate, onMounted, onUpdated, Ref, watch } from '@vue/runtime-core'
-import { PoolRes } from '@/utils/orca'
-import { PropType } from 'vue'
-</script>
-<script setup lang="ts">
-import { defineProps, getCurrentInstance, ref } from 'vue'
+import { defineComponent, PropType, computed, defineEmit, onActivated, onBeforeUpdate, onMounted, onUpdated, Ref, watch, getCurrentInstance, ref } from 'vue'
+import { PoolRes, getOrcaPoolByMintAddress, OrcaTokenAccountInfo, getOrcaPools } from '@/utils/orca'
 import { Connection, PublicKey } from '@solana/web3.js'
 import { getMultiTokenAccounts, TokenAccountInfo } from '@/utils/web3'
-import { getOrcaPoolByMintAddress, OrcaTokenAccountInfo, getOrcaPools } from '@/utils/orca'
 import OrcaTokenItem from '@/components/dashboard/OrcaTokenItem.vue'
 
-const props = defineProps({
-  wallets: Array as PropType<PublicKey[]>,
+export default defineComponent({
+  components: { OrcaTokenItem },
+  props: {
+    wallets: {
+      type: Array as PropType<PublicKey[]>,
+      default: undefined,
+    },
+  },
+  emits: ['listValue'],
+  setup(props, { emit }) {
+    const connection: Connection = getCurrentInstance()?.appContext.config.globalProperties.$web3
+
+    const allTokensAccounts: Ref<TokenAccountInfo[]> = ref([])
+    const getAllTokenAccounts = async function(addresses: PublicKey[]) {
+      allTokensAccounts.value = await getMultiTokenAccounts(connection, addresses)
+    }
+
+    const orcaPools: Ref<PoolRes> = ref({})
+    const getAllOrcaPools = async function() {
+      orcaPools.value = await getOrcaPools()
+    }
+
+    const orcaTokens = computed(() => {
+      const orcaMints = Object.keys(orcaPools.value).map(key => orcaPools.value[key].poolTokenMint)
+      const tokens = allTokensAccounts.value
+        .filter(({ mint, amount }) => orcaMints.includes(mint.toString()) && amount > 0)
+      const pools = tokens.map((tokenAccountInfo) => {
+        const info = getOrcaPoolByMintAddress(orcaPools.value, tokenAccountInfo.mint.toString())
+        return new OrcaTokenAccountInfo(tokenAccountInfo, info)
+      })
+      return pools
+    })
+
+    const poolValues: Ref<number[]> = ref([])
+    const receiveUpdatedValue = function(index: number, value: number) {
+      poolValues.value[index] = value
+    }
+    const orcaValue = computed(() => poolValues.value.length > 0 ? poolValues.value.reduce((previous, current) => previous + current) : 0)
+
+    watch(orcaValue, (newValue, oldValue) => {
+      emit('listValue', newValue)
+    })
+
+    watch(() => props.wallets, (value, oldValue) => {
+      poolValues.value = []
+      allTokensAccounts.value = []
+      if (value && value.length > 0) {
+        getAllTokenAccounts(value)
+        getAllOrcaPools()
+      }
+    }, { immediate: true })
+
+    return {
+      orcaTokens,
+      receiveUpdatedValue,
+    }
+  },
 })
-
-const connection: Connection = getCurrentInstance()?.appContext.config.globalProperties.$web3
-
-const allTokensAccounts: Ref<TokenAccountInfo[]> = ref([])
-const getAllTokenAccounts = async function(addresses: PublicKey[]) {
-  allTokensAccounts.value = await getMultiTokenAccounts(connection, addresses)
-}
-
-const orcaPools: Ref<PoolRes> = ref({})
-const getAllOrcaPools = async function() {
-  orcaPools.value = await getOrcaPools()
-}
-
-const orcaTokens = computed(() => {
-  const orcaMints = Object.keys(orcaPools.value).map((key) => orcaPools.value[key].poolTokenMint)
-  const tokens = allTokensAccounts.value
-    .filter(({mint, amount}) => orcaMints.some((value) => value == mint.toString()) && amount > 0)
-  const pools = tokens.map((tokenAccountInfo) => {
-    const info = getOrcaPoolByMintAddress(orcaPools.value, tokenAccountInfo.mint.toString())
-    return new OrcaTokenAccountInfo(tokenAccountInfo, info)
-  })
-  return pools
-})
-
-const poolValues: Ref<number[]> = ref([])
-const receiveUpdatedValue = function(index: number, value: number) {
-  poolValues.value[index] = value
-}
-const orcaValue = computed(() => poolValues.value.length > 0 ? poolValues.value.reduce((previous, current) => previous + current) : 0)
-const emit = defineEmit([
-  'listValue'
-])
-watch(orcaValue, (newValue, oldValue) => {
-  emit('listValue', newValue)
-})
-
-watch(() => props.wallets, (value, oldValue) => {
-  poolValues.value = []
-  allTokensAccounts.value =[]
-  if(value && value.length > 0) {
-    getAllTokenAccounts(value)
-    getAllOrcaPools()
-  }
-}, { immediate: true })
 </script>
 
 <template>

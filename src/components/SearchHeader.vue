@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts">
 import { TransitionRoot } from '@headlessui/vue'
 import { useI18n } from 'vue-i18n'
 import { Icon, addCollection } from '@iconify/vue'
@@ -9,28 +9,47 @@ import ri from '@iconify/json/json/ri.json'
 import maj from '@iconify/json/json/majesticons.json'
 import uil from '@iconify/json/json/uil.json'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { isDark, toggleDark } from '@/utils'
 
-addCollection(bx)
-addCollection(ic)
-addCollection(cil)
-const { t, availableLocales, locale } = useI18n()
-const router = useRouter()
+export default defineComponent({
+  components: {
+    Icon,
+    TransitionRoot,
+  },
+  setup() {
+    addCollection(bx)
+    addCollection(ic)
+    addCollection(cil)
+    const { t, availableLocales, locale } = useI18n()
+    const router = useRouter()
 
-const search = ref('')
+    const search = ref('')
 
-const goSearch = function() {
-  router.push(`/dashboard/${search.value}`)
-  search.value = ''
-}
+    const goSearch = function() {
+      router.push(`/dashboard/${search.value}`)
+      search.value = ''
+    }
 
-const toggleLocales = () => {
-  const locales = availableLocales
-  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
-}
+    const toggleLocales = () => {
+      const locales = availableLocales
+      locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+    }
 
-const showMenu = ref(false)
+    const showMenu = ref(false)
+
+    return {
+      t,
+      isDark,
+      toggleDark,
+      router,
+      search,
+      goSearch,
+      toggleLocales,
+      showMenu,
+    }
+  },
+})
 </script>
 <template>
   <header class="bg-white shadow-md py-4 z-19 dark:bg-gray-800">

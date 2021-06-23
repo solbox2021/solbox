@@ -1,10 +1,22 @@
-<script setup lang="ts">
+<script lang="ts">
 import { useI18n } from 'vue-i18n'
 import { Icon, addCollection } from '@iconify/vue'
 import twemoji from '@iconify/json/json/twemoji.json'
+import { defineComponent } from '@vue/runtime-core'
 
-addCollection(twemoji)
-const { t } = useI18n()
+export default defineComponent({
+  components: {
+    Icon,
+  },
+  setup() {
+    addCollection(twemoji)
+    const { t } = useI18n()
+
+    return {
+      t,
+    }
+  },
+})
 </script>
 
 <template>

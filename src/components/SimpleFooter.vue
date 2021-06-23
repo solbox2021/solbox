@@ -1,11 +1,21 @@
-<script setup lang="ts">
+<script lang="ts">
 import { useI18n } from 'vue-i18n'
 import { Icon, addCollection } from '@iconify/vue'
 import mdi from '@iconify/json/json/mdi.json'
+import { defineComponent } from '@vue/runtime-core'
 
-addCollection(mdi)
-const { t } = useI18n()
-
+export default defineComponent({
+  components: {
+    Icon,
+  },
+  setup() {
+    addCollection(mdi)
+    const { t } = useI18n()
+    return {
+      t,
+    }
+  },
+})
 </script>
 <template>
   <footer class="flex flex-row px-6 pt-2 pb-3 items-center justify-between backdrop-filter backdrop-blur-xl">

@@ -1,43 +1,55 @@
-<script setup lang="ts">
+<script lang="ts">
 import { useI18n } from 'vue-i18n'
 import CoinMarketTable from '@/components/market/CoinMarketTable.vue'
 import SearchCoin from '@/components/market/SearchCoin.vue'
-import { Dialog, DialogOverlay, DialogTitle } from '@headlessui/vue'
-import { onMounted, ref } from 'vue'
+import { Dialog, DialogOverlay } from '@headlessui/vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { favoriteCoins } from '@/utils/storage'
 import { Icon, addCollection } from '@iconify/vue'
 import ic from '@iconify/json/json/ic.json'
 import ph from '@iconify/json/json/ph.json'
 
-const { t } = useI18n()
-addCollection(ic)
-addCollection(ph)
+export default defineComponent({
+  components: { Icon, CoinMarketTable, DialogOverlay, Dialog, SearchCoin },
+  setup() {
+    const { t } = useI18n()
+    addCollection(ic)
+    addCollection(ph)
 
-const dialogOpen = ref(false)
-const setDialogOpen = function(v: boolean) {
-  dialogOpen.value = v
-}
+    const dialogOpen = ref(false)
+    const setDialogOpen = function(v: boolean) {
+      dialogOpen.value = v
+    }
 
-const currTab = ref(0)
-const tabs = [
-  {
-    title: 'favorite',
-    value: 0,
+    const currTab = ref(0)
+    const tabs = [
+      {
+        title: 'favorite',
+        value: 0,
+      },
+      {
+        title: 'popular',
+        value: 1,
+      },
+    ]
+    const clickTab = function(index: number) {
+      currTab.value = index
+    }
+
+    onMounted(() => {
+      currTab.value = favoriteCoins.value.length > 0 ? 0 : 1
+    })
+    return {
+      t,
+      tabs,
+      currTab,
+      clickTab,
+      dialogOpen,
+      setDialogOpen,
+    }
   },
-  {
-    title: 'popular',
-    value: 1,
-  },
-]
-const clickTab = function(index: number) {
-  currTab.value = index
-}
-
-onMounted(() => {
-  currTab.value = favoriteCoins.value.length > 0 ? 0 : 1
 })
 </script>
-
 <template>
   <div class="container mx-auto px-6">
     <div

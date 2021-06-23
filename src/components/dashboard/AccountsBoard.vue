@@ -1,22 +1,29 @@
 <script lang="ts">
-import { defineProps, PropType } from 'vue'
-</script>
-<script setup lang="ts">
+import { defineComponent, defineProps, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { accountsStore } from "@/store";
-import { PublicKey } from '@solana/web3.js';
+import { accountsStore } from '@/store'
+import { PublicKey } from '@solana/web3.js'
 import { useToast } from 'vue-toastification'
 
-const { t } = useI18n()
-const toast = useToast()
+export default defineComponent({
+  components: {},
+  props: {
+    wallets: {
+      type: Array as PropType<PublicKey[]>,
+      default: undefined,
+      required: false,
+    },
+  },
+  setup() {
+    const { t } = useI18n()
+    const toast = useToast()
+    const copySuccess = () => {
+      toast.success(t('hint.copy-success'))
+    }
 
-const props = defineProps({
-  wallets: Array as PropType<PublicKey[]>,
+    return { t, toast, copySuccess, accountsStore }
+  },
 })
-
-const copySuccess = () => {
-  toast.success(t('hint.copy-success'))
-}
 </script>
 
 <template>

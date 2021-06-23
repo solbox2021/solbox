@@ -1,74 +1,83 @@
 <script lang="ts">
-import { CoinMarket, HOT_COIN_MARKET } from '@/utils/coingecko'
-import { Ref } from '@vue/runtime-core'
-import { TokenInfo } from '@solana/spl-token-registry'
-
-</script>
-<script setup lang="ts">
+import { defineComponent, Ref, onMounted, ref } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
-import { fetchCoinMarket } from '@/utils/coingecko'
-import { onMounted, ref } from '@vue/runtime-core';
+import { fetchCoinMarket, CoinMarket, HOT_COIN_MARKET } from '@/utils/coingecko'
 import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
 import ph from '@iconify/json/json/ph.json'
 import ic from '@iconify/json/json/ic.json'
 import { favoriteCoins } from '@/utils/storage'
-import { defineProps, watch } from 'vue';
-import { tokensStore } from '@/store';
+import { defineProps, watch } from 'vue'
+import { tokensStore } from '@/store'
 
-addCollection(ri)
-addCollection(ph)
-addCollection(ic)
-const { t } = useI18n()
+export default defineComponent({
+  components: { Icon },
+  props: {
+    listType: {
+      type: Number,
+      default: 0, // 0 for favorite, 1 for popular
+    },
+  },
+  setup(props) {
+    addCollection(ri)
+    addCollection(ph)
+    addCollection(ic)
+    const { t } = useI18n()
 
-const props = defineProps({
-  listType: Number,   //0 for favorite, 1 for popular
+    const coinSymbols: Ref<string[]> = ref([])
+    const coinMarkets: Ref<CoinMarket[]> = ref([])
+    const isLoading = ref(false)
+    const fetchMarket = async function() {
+      isLoading.value = true
+      coinMarkets.value = (await tokensStore.getTokenInfos(coinSymbols.value)).map(tokenInfo => ({
+        info: tokenInfo,
+        market: undefined,
+      }))
+      if (coinMarkets.value.length === 0) {
+        isLoading.value = false
+        return
+      }
+      const markets = await fetchCoinMarket(coinSymbols.value)
+      coinMarkets.value = coinMarkets.value.map(({ info: tokenInfo }) => ({
+        info: tokenInfo,
+        market: markets.find(({ symbol }) => (symbol.toLowerCase() === tokenInfo?.symbol.toLowerCase())),
+      }))
+      isLoading.value = false
+    }
+
+    watch(() => props.listType, (value, oldValue) => {
+      coinSymbols.value = value === 0 ? favoriteCoins.value : HOT_COIN_MARKET
+      fetchMarket()
+    }, { immediate: true })
+
+    watch(() => [...favoriteCoins.value], (newValue, oldValue) => {
+      if (props.listType !== 0) return
+      const newCoins = newValue.filter(value => !oldValue.includes(value))
+      if (newCoins.length > 0) {
+        coinSymbols.value = newValue
+        fetchMarket()
+      }
+    })
+
+    const clickFavorite = function(symbol: string | undefined) {
+      if (!symbol) return
+      const index = favoriteCoins.value.indexOf(symbol)
+      if (index < 0)
+        favoriteCoins.value.push(symbol)
+      else
+        favoriteCoins.value.splice(index, 1)
+    }
+
+    return {
+      t,
+      coinMarkets,
+      isLoading,
+      favoriteCoins,
+      fetchMarket,
+      clickFavorite,
+    }
+  },
 })
-
-const coinSymbols: Ref<string[]> = ref([])
-const coinMarkets: Ref<CoinMarket[]> = ref([])
-const isLoading = ref(false)
-const fetchMarket = async function() {
-  isLoading.value = true
-  coinMarkets.value = (await tokensStore.getTokenInfos(coinSymbols.value)).map((tokenInfo) => ({
-    info: tokenInfo,
-    market: undefined
-  }))
-  if (coinMarkets.value.length == 0) {
-    isLoading.value = false
-    return
-  }
-  const markets = await fetchCoinMarket(coinSymbols.value)
-  coinMarkets.value = coinMarkets.value.map(({info: tokenInfo}) => ({
-    info: tokenInfo,
-    market: markets.find(({symbol}) => (symbol.toLowerCase() == tokenInfo?.symbol.toLowerCase()))
-  }))
-  isLoading.value = false
-}
-
-watch(() => props.listType, (value, oldValue) => {
-  coinSymbols.value = value == 0 ? favoriteCoins.value : HOT_COIN_MARKET
-  fetchMarket()
-}, { immediate: true })
-
-watch(() => [...favoriteCoins.value], (newValue, oldValue) => {
-  if (props.listType != 0) return
-  const newCoins = newValue.filter((value) => !oldValue.includes(value))
-  if (newCoins.length > 0) {
-    coinSymbols.value = newValue
-    fetchMarket()
-  }
-})
-
-const clickFavorite = function(symbol:string | undefined) {
-  if (!symbol) return
-  const index = favoriteCoins.value.indexOf(symbol)
-  if (index < 0) {
-    favoriteCoins.value.push(symbol)
-  } else {
-    favoriteCoins.value.splice(index, 1)
-  }
-}
 
 </script>
 <template>

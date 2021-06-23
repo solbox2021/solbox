@@ -1,21 +1,33 @@
-<script setup lang="ts">
-import { computed, ref } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
 import coinGeckoIds from '@/assets/coingecko.json'
 import { favoriteCoins } from '@/utils/storage'
 import { Icon, addCollection } from '@iconify/vue'
 import mdi from '@iconify/json/json/mdi.json'
 
-addCollection(mdi)
+export default defineComponent({
+  components: { Icon },
+  setup() {
+    addCollection(mdi)
 
-const query = ref('')
+    const query = ref('')
 
-const searchRes = computed(() => coinGeckoIds.filter(({ symbol, name }) =>
-  (symbol.toLowerCase().includes(query.value.toLowerCase()) || name.toLowerCase().includes(query.value.toLowerCase()))))
+    const searchRes = computed(() => coinGeckoIds.filter(({ symbol, name }) =>
+      (symbol.toLowerCase().includes(query.value.toLowerCase()) || name.toLowerCase().includes(query.value.toLowerCase()))))
 
-const addFavorite = function(symbol: string) {
-  if (!favoriteCoins.value.includes(symbol))
-    favoriteCoins.value.push(symbol)
-}
+    const addFavorite = function(symbol: string) {
+      if (!favoriteCoins.value.includes(symbol))
+        favoriteCoins.value.push(symbol)
+    }
+
+    return {
+      searchRes,
+      query,
+      favoriteCoins,
+      addFavorite,
+    }
+  },
+})
 </script>
 
 <template>
