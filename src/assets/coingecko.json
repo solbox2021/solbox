@@ -1,0 +1,751 @@
+[
+	{
+		"symbol": "SOL",
+		"coinGeckoId": "solana",
+		"address": "So11111111111111111111111111111111111111112",
+		"name": "Wrapped SOL",
+		"decimals": 9,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/solana/info/logo.png"
+	},
+	{
+		"symbol": "USDC",
+		"coinGeckoId": "usd-coin",
+		"address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+		"name": "USD Coin",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png"
+	},
+	{
+		"symbol": "BTC",
+		"coinGeckoId": "bitcoin",
+		"address": "9n4nbM75f5Ui33ZbPYXn59EwSgE8CGsHtAeTH5YFeJ9E",
+		"name": "Wrapped Bitcoin (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png"
+	},
+	{
+		"symbol": "ETH",
+		"coinGeckoId": "ethereum",
+		"address": "2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk",
+		"name": "Wrapped Ethereum (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+	},
+	{
+		"symbol": "YFI",
+		"coinGeckoId": "yearn-finance",
+		"address": "3JSf5tPeuscJGtaCp5giEiDhv51gQ4v3zWg8DGgyLfAB",
+		"name": "Wrapped YFI (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e/logo.png"
+	},
+	{
+		"symbol": "LINK",
+		"coinGeckoId": "chainlink",
+		"address": "CWE8jPTUYhdCTZYWPTe1o5DFqfdjzWKc9WKz6rSjQUdG",
+		"name": "Wrapped Chainlink (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x514910771AF9Ca656af840dff83E8264EcF986CA/logo.png"
+	},
+	{
+		"symbol": "XRP",
+		"coinGeckoId": "binance-peg-xrp",
+		"address": "Ga2AXHpfAF6mv2ekZwcsJFqu7wB4NV331qNH7fW9Nst8",
+		"name": "Wrapped XRP (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ripple/info/logo.png"
+	},
+	{
+		"symbol": "SUSHI",
+		"coinGeckoId": "sushi",
+		"address": "AR1Mtgh7zAtxuxGd2XPovXPVjcSdY3i4rQYisNadjfKy",
+		"name": "Wrapped SUSHI (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x6B3595068778DD592e39A122f4f5a5cF09C90fE2/logo.png"
+	},
+	{
+		"symbol": "ALEPH",
+		"coinGeckoId": "aleph",
+		"address": "CsZ5LZkDS7h9TDKjrbL7VAwQZ9nsRu8vJLhRYfmGaN8K",
+		"name": "Wrapped ALEPH (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/nuls/assets/NULSd6HgyZkiqLnBzTaeSQfx1TNg2cqbzq51h/logo.png"
+	},
+	{
+		"symbol": "SXP",
+		"coinGeckoId": "swipe",
+		"address": "SF3oTvfWzEP3DTwGSvUXRrGTvr75pdZNnBLAH9bzMuX",
+		"name": "Wrapped SXP (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets/blockchains/ethereum/assets/0x8CE9137d39326AD0cD6491fb5CC0CbA0e089b6A9/logo.png"
+	},
+	{
+		"symbol": "HGET",
+		"coinGeckoId": "hedget",
+		"address": "BtZQfWqDGbk9Wf2rXEiWyQBdBY1etnUUn6zEphvVS7yN",
+		"name": "Wrapped Hedget (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://www.hedget.com/images/favicon.svg"
+	},
+	{
+		"symbol": "CREAM",
+		"coinGeckoId": "cream-2",
+		"address": "5Fu5UUgbjpUvdBveb3a1JTNirL8rXtiYeSMWvKjtUNQv",
+		"name": "Wrapped Cream Finance (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/smartchain/assets/0xd4CB328A82bDf5f03eB737f37Fa6B370aef3e888/logo.png"
+	},
+	{
+		"symbol": "UBXT",
+		"coinGeckoId": "upbots",
+		"address": "873KLxCbz7s9Kc4ZzgYRtNmhfkQrhfyWGZJBmyCbC3ei",
+		"name": "Wrapped Upbots (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://assets.coingecko.com/coins/images/12476/small/UBXT.png?1600132967"
+	},
+	{
+		"symbol": "HNT",
+		"coinGeckoId": "helium",
+		"address": "HqB7uswoVg4suaQiDP3wjxob1G5WdZ144zhdStwMCq7e",
+		"name": "Wrapped Helium (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://assets.coingecko.com/coins/images/4284/small/Helium_HNT.png?1612620071"
+	},
+	{
+		"symbol": "FRONT",
+		"coinGeckoId": "frontier-token",
+		"address": "9S4t2NEAiJVMvPdRYKVrfJpBafPBLtvbvyS3DecojQHw",
+		"name": "Wrapped FRONT (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xf8C3527CC04340b208C854E985240c02F7B7793f/logo.png"
+	},
+	{
+		"symbol": "AKRO",
+		"coinGeckoId": "akropolis",
+		"address": "6WNVCuxCGJzNjmMZoKyhZJwvJ5tYpsLyAtagzYASqBoF",
+		"name": "Wrapped AKRO (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xb2734a4Cec32C81FDE26B0024Ad3ceB8C9b34037/logo.png"
+	},
+	{
+		"symbol": "HXRO",
+		"coinGeckoId": "hxro",
+		"address": "DJafV9qemGp7mLMEn5wrfqaFwxsbLgUsGVS16zKRk9kc",
+		"name": "Wrapped HXRO (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://assets.coingecko.com/coins/images/7805/large/hxro-squarelogo-1585089594129.png?1586221980"
+	},
+	{
+		"symbol": "UNI",
+		"coinGeckoId": "unicorn-token",
+		"address": "DEhAasscXF4kEGxFgJ3bq4PpVGp5wyUxMRvn6TzGVHaw",
+		"name": "Wrapped UNI (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984/logo.png"
+	},
+	{
+		"symbol": "SRM",
+		"coinGeckoId": "serum",
+		"address": "SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt",
+		"name": "Serum",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x476c5E26a75bd202a9683ffD34359C0CC15be0fF/logo.png"
+	},
+	{
+		"symbol": "FTT",
+		"coinGeckoId": "ftx-token",
+		"address": "AGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3",
+		"name": "Wrapped FTT (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/AGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3/logo.png"
+	},
+	{
+		"symbol": "TOMO",
+		"coinGeckoId": "tomochain",
+		"address": "GXMvfY2jpQctDqZ9RoU3oWPhufKiCcFEfchvYumtX7jd",
+		"name": "Wrapped TOMO (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/tomochain/info/logo.png"
+	},
+	{
+		"symbol": "KARMA",
+		"coinGeckoId": "karma-dao",
+		"address": "EcqExpGNFBve2i1cMJUTR4bPXj4ZoqmDD2rTkeCcaTFX",
+		"name": "Wrapped KARMA (Sollet)",
+		"decimals": 4,
+		"logoURI": "https://cdn.jsdelivr.net/gh/machi-x/assets@master/blockchains/ethereum/assets/0xdfe691f37b6264a90ff507eb359c45d55037951c/logo.png"
+	},
+	{
+		"symbol": "LUA",
+		"coinGeckoId": "lua-token",
+		"address": "EqWCKXfs3x47uVosDpTRgFniThL9Y8iCztJaapxbEaVX",
+		"name": "Wrapped LUA (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xB1f66997A5760428D3a87D68b90BfE0aE64121cC/logo.png"
+	},
+	{
+		"symbol": "MATH",
+		"coinGeckoId": "math",
+		"address": "GeDS162t9yGJuLEHPWXXGrb1zwkzinCgRwnT8vHYjKza",
+		"name": "Wrapped MATH (Sollet)",
+		"decimals": 6
+	},
+	{
+		"symbol": "KEEP",
+		"coinGeckoId": "keep-network",
+		"address": "GUohe4DJUA5FKPWo3joiPgsB7yzer7LpDmt1Vhzy3Zht",
+		"name": "Wrapped KEEP (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://assets.coingecko.com/coins/images/3373/large/IuNzUb5b_400x400.jpg?1589526336"
+	},
+	{
+		"symbol": "SWAG",
+		"coinGeckoId": "swag-finance",
+		"address": "9F9fNTT6qwjsu4X4yWYKZpsbw5qT7o6yR2i57JF2jagy",
+		"name": "Wrapped SWAG (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://assets.coingecko.com/coins/images/12805/large/photo_2020-10-14_23.17.02.jpeg?1602688642"
+	},
+	{
+		"symbol": "CEL",
+		"coinGeckoId": "celsius-degree-token",
+		"address": "DgHK9mfhMtUwwv54GChRrU54T2Em5cuszq2uMuen1ZVE",
+		"name": "Wrapped Celsius (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xaaAEBE6Fe48E54f431b0C390CfaF0b017d09D42d/logo.png"
+	},
+	{
+		"symbol": "RSR",
+		"coinGeckoId": "reserve-rights-token",
+		"address": "7ncCLJpP3MNww17LW8bRvx8odQQnubNtfNZBL5BgAEHW",
+		"name": "Wrapped Reserve Rights (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x8762db106B2c2A0bccB3A80d1Ed41273552616E8/logo.png"
+	},
+	{
+		"symbol": "1INCH",
+		"coinGeckoId": "1inch",
+		"address": "5wihEYGca7X4gSe97C5mVcqNsfxBzhdTwpv72HKs25US",
+		"name": "Wrapped 1INCH (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x111111111117dC0aa78b770fA6A738034120C302/logo.png"
+	},
+	{
+		"symbol": "GRT",
+		"coinGeckoId": "golden-ratio-token",
+		"address": "38i2NQxjp5rt5B3KogqrxmBxgrAwaB3W1f1GmiKqh9MS",
+		"name": "Wrapped GRT  (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xc944E90C64B2c07662A292be6244BDf05Cda44a7/logo.png"
+	},
+	{
+		"symbol": "COMP",
+		"coinGeckoId": "compound-coin",
+		"address": "Avz2fmevhhu87WYtWQCFj9UjKRjF9Z9QWwN2ih9yF95G",
+		"name": "Wrapped Compound (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xc00e94Cb662C3520282E6f5717214004A7f26888/logo.png"
+	},
+	{
+		"symbol": "PAXG",
+		"coinGeckoId": "pax-gold",
+		"address": "9wRD14AhdZ3qV8et3eBQVsrb3UoBZDUbJGyFckpTg8sj",
+		"name": "Wrapped Paxos Gold (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x45804880De22913dAFE09f4980848ECE6EcbAf78/logo.png"
+	},
+	{
+		"symbol": "STRONG",
+		"coinGeckoId": "strong",
+		"address": "AByXcTZwJHMtrKrvVsh9eFNB1pJaLDjCUR2ayvxBAAM2",
+		"name": "Wrapped Strong (Sollet)",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x990f341946A3fdB507aE7e52d17851B87168017c/logo.png"
+	},
+	{
+		"symbol": "FIDA",
+		"coinGeckoId": "bonfida",
+		"address": "EchesyfXePKdLtoiZSL8pBe8Myagyy8ZRqsACNCFGnvp",
+		"name": "Bonfida",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/dr497/awesome-serum-markets/icons/fida.svg"
+	},
+	{
+		"symbol": "KIN",
+		"coinGeckoId": "kin",
+		"address": "kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6",
+		"name": "KIN",
+		"decimals": 5,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/kin/info/logo.png"
+	},
+	{
+		"symbol": "MAPS",
+		"coinGeckoId": "maps",
+		"address": "MAPS41MDahZ9QdKXhVa4dWB9RuyfV4XqhyAZ8XcYepb",
+		"name": "MAPS",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/explorer/public/tokens/maps.svg"
+	},
+	{
+		"symbol": "OXY",
+		"coinGeckoId": "oxygen",
+		"address": "z3dn17yLaGMKffVogeFHQ9zWVcXgqgf3PQnDsNs2g6M",
+		"name": "Oxygen Protocol",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/nathanielparke/awesome-serum-markets/icons/oxy.svg"
+	},
+	{
+		"symbol": "BRZ",
+		"coinGeckoId": "brz",
+		"address": "FtgGSFADXBtroxq8VCausXRr2of47QBf5AS1NtZCu4GD",
+		"name": "BRZ",
+		"decimals": 4,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/explorer/public/tokens/brz.png"
+	},
+	{
+		"symbol": "USDT",
+		"coinGeckoId": "tether",
+		"address": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+		"name": "USDT",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/explorer/public/tokens/usdt.svg"
+	},
+	{
+		"symbol": "xMARK",
+		"coinGeckoId": "xmark",
+		"address": "2oDxYGgTBmST4rc3yn1YtcSEck7ReDZ8wHWLqZAuNWXH",
+		"name": "Standard",
+		"decimals": 9,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/2oDxYGgTBmST4rc3yn1YtcSEck7ReDZ8wHWLqZAuNWXH/logo.png"
+	},
+	{
+		"symbol": "RAY",
+		"coinGeckoId": "raydium",
+		"address": "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+		"name": "Raydium",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/RVKd61ztZW9GUwhRbbLoYVRE5Xf1B2tVscKqwZqXgEr/logo.png"
+	},
+	{
+		"symbol": "BNB",
+		"coinGeckoId": "binancecoin",
+		"address": "EjFGGJSyp9UDS8aqafET5LX49nsG326MeNezYzpiwgpQ",
+		"name": "BNB",
+		"decimals": 0
+	},
+	{
+		"symbol": "SBF",
+		"coinGeckoId": "steakbank-finance",
+		"address": "GyRkPAxpd9XrMHcBF6fYHVRSZQvQBwAGKAGQeBPSKzMq",
+		"name": "SBF",
+		"decimals": 0
+	},
+	{
+		"symbol": "BTSG",
+		"coinGeckoId": "bitsong",
+		"address": "BDxWSxkMLW1nJ3VggamUKkEKrtCaVqzFxoDApM8HdBks",
+		"name": "BitSong",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/bitsongofficial/assets/logo_128x128.png"
+	},
+	{
+		"symbol": "BVOL",
+		"coinGeckoId": "1x-long-btc-implied-volatility-token",
+		"address": "91z91RukFM16hyEUCXuwMQwp2BW3vanNG5Jh5yj6auiJ",
+		"name": "BVOL",
+		"decimals": 6,
+		"logoURI": ""
+	},
+	{
+		"symbol": "IBVOL",
+		"coinGeckoId": "1x-short-btc-implied-volatility",
+		"address": "5TY71D29Cyuk9UrsSxLXw2quJBpS7xDDFuFu2K9W7Wf9",
+		"name": "IBlive",
+		"decimals": 6,
+		"logoURI": ""
+	},
+	{
+		"symbol": "AAVE",
+		"coinGeckoId": "aave",
+		"address": "dK83wTVypEpa1pqiBbHY3MNuUnT3ADUZM4wk9VZXZEc",
+		"name": "Wrapped Aave",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9/logo.png"
+	},
+	{
+		"symbol": "SECO",
+		"coinGeckoId": "serum-ecosystem-token",
+		"address": "7CnFGR9mZWyAtWxPcVuTewpyC3A3MDW4nLsu5NY6PDbd",
+		"name": "SECO",
+		"decimals": 6,
+		"logoURI": ""
+	},
+	{
+		"symbol": "HOLY",
+		"coinGeckoId": "holyheld",
+		"address": "3GECTP7H4Tww3w8jEPJCJtXUtXxiZty31S9szs84CcwQ",
+		"name": "HOLY",
+		"decimals": 6,
+		"logoURI": ""
+	},
+	{
+		"symbol": "TRYB",
+		"coinGeckoId": "bilira",
+		"address": "6ry4WBDvAwAnrYJVv6MCog4J8zx6S3cPgSqnTsDZ73AR",
+		"name": "TRYB",
+		"decimals": 6,
+		"logoURI": ""
+	},
+	{
+		"symbol": "PERP",
+		"coinGeckoId": "perpetual-protocol",
+		"address": "D68NB5JkzvyNCZAvi6EGtEcGvSoRNPanU9heYTAUFFRa",
+		"name": "PERP",
+		"decimals": 6,
+		"logoURI": ""
+	},
+	{
+		"symbol": "wMATIC",
+		"coinGeckoId": "wmatic",
+		"address": "4DHywS5EjUTF5AYisPZiJbWcCV4gfpH98oKxpgyKRnnQ",
+		"name": "Matic Token (Wormhole)",
+		"decimals": 9,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0/logo.png"
+	},
+	{
+		"symbol": "wGRT",
+		"coinGeckoId": "waykichain-governance-coin",
+		"address": "BmxZ1pghpcoyT7aykj7D1o4AxWirTqvD7zD2tNngjirT",
+		"name": "Graph Token (Wormhole)",
+		"decimals": 9,
+		"logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xc944E90C64B2c07662A292be6244BDf05Cda44a7/logo.png"
+	},
+	{
+		"symbol": "oDOP",
+		"coinGeckoId": "odop",
+		"address": "4pk3pf9nJDN1im1kNwWJN1ThjE8pCYCTexXYGyFjqKVf",
+		"name": "Dominican Pesos",
+		"decimals": 9,
+		"logoURI": "https://user-images.githubusercontent.com/9972260/111077928-73bd2280-84c9-11eb-84d4-4032478e3861.png"
+	},
+	{
+		"symbol": "COPE",
+		"coinGeckoId": "cope",
+		"address": "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh",
+		"name": "COPE",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE/logo.jpg"
+	},
+	{
+		"symbol": "MCAPS",
+		"coinGeckoId": "mango-market-caps",
+		"address": "2prC8tcVsXwVJAinhxd2zeMeWMWaVyzPoQeLKyDZRFKd",
+		"name": "Mango Market Caps",
+		"decimals": 0,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/2prC8tcVsXwVJAinhxd2zeMeWMWaVyzPoQeLKyDZRFKd/logo.png"
+	},
+	{
+		"symbol": "INO",
+		"coinGeckoId": "ino-coin",
+		"address": "E1PvPRPQvZNivZbXRL61AEGr71npZQ5JGxh4aWX7q9QA",
+		"name": "iNo Token",
+		"decimals": 9,
+		"logoURI": "https://ino.llegrand.fr/assets/ino-128.png"
+	},
+	{
+		"symbol": "ROPE",
+		"coinGeckoId": "rope-token",
+		"address": "8PMHT4swUMtBzgHnh5U564N5sjPSiUz2cjEQzFnnP1Fo",
+		"name": "Rope Token",
+		"decimals": 9,
+		"logoURI": "https://ropesolana.com/content/files/rope_token.svg"
+	},
+	{
+		"symbol": "MEDIA",
+		"coinGeckoId": "media-network",
+		"address": "ETAtLmCmsoiEEKfNrHKJ2kYy3MoABhU6NQvpSfij5tDs",
+		"name": "Media Network",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/ETAtLmCmsoiEEKfNrHKJ2kYy3MoABhU6NQvpSfij5tDs/logo.png"
+	},
+	{
+		"symbol": "STEP",
+		"coinGeckoId": "step-finance",
+		"address": "StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT",
+		"name": "Step",
+		"decimals": 9,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT/logo.png"
+	},
+	{
+		"symbol": "SPD",
+		"coinGeckoId": "spindle",
+		"address": "4DrV8khCoPS3sWRj6t1bb2DzT9jD4mZp6nc7Jisuuv1b",
+		"name": "Solpad",
+		"decimals": 10,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/4DrV8khCoPS3sWRj6t1bb2DzT9jD4mZp6nc7Jisuuv1b/logo.jpg"
+	},
+	{
+		"symbol": "DIAMOND",
+		"coinGeckoId": "diamond-token",
+		"address": "97qAF7ZKEdPdQaUkhASGA59Jpa2Wi7QqVmnFdEuPqEDc",
+		"name": "LOVE",
+		"decimals": 6,
+		"logoURI": "https://github.com/AdamBraham88/SPL-TOKEN/blob/main/Diamond-Love-icon.png"
+	},
+	{
+		"symbol": "SLIM",
+		"coinGeckoId": "solanium",
+		"address": "xxxxa1sKNGwFtw2kFn8XauW9xq8hBZ5kVtcSesTT9fW",
+		"name": "Solanium",
+		"decimals": 6,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/xxxxa1sKNGwFtw2kFn8XauW9xq8hBZ5kVtcSesTT9fW/logo.png"
+	},
+	{
+		"symbol": "SAMO",
+		"coinGeckoId": "samoyedcoin",
+		"address": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+		"name": "Samoyed Coin",
+		"decimals": 9,
+		"logoURI": "https://i.ibb.co/tLGpvNf/samo.png"
+	},
+	{
+		"symbol": "LOVE",
+		"coinGeckoId": "love-coin",
+		"address": "4G85c5aUsRTrRPqE5VjY7ebD9b2ktTF6NEVGiCddRBDX",
+		"name": "B ❤ P",
+		"decimals": 0,
+		"logoURI": "https://storage.googleapis.com/star-atlas-assets/star-atlas-logo.png"
+	},
+	{
+		"symbol": "TLS",
+		"coinGeckoId": "tls-token",
+		"address": "Hfjgcs9ix17EwgXVVbKjo6NfMm2CXfr34cwty3xWARUm",
+		"name": "The Last Stand",
+		"decimals": 0,
+		"logoURI": "https://storage.googleapis.com/star-atlas-assets/star-atlas-logo.png"
+	},
+	{
+		"symbol": "SPT",
+		"coinGeckoId": "spectrum",
+		"address": "8EXX5kG7qWTjgpNSGX7PnB6hJZ8xhXUcCafVJaBEJo32",
+		"name": "The Signing of the Peace Treaty",
+		"decimals": 0,
+		"logoURI": "https://storage.googleapis.com/star-atlas-assets/star-atlas-logo.png"
+	},
+	{
+		"symbol": "SNY",
+		"coinGeckoId": "syntheify-token",
+		"address": "4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y",
+		"name": "Synthetify",
+		"decimals": 6,
+		"logoURI": "https://resources.synthetify.io/sythetify.png"
+	},
+	{
+		"symbol": "CRT",
+		"coinGeckoId": "carr-finance",
+		"address": "9Y8NT5HT9z2EsmCbYMgKXPRq3h3aa6tycEqfFiXjfZM7",
+		"name": "CARROT",
+		"decimals": 9,
+		"logoURI": "https://cdn.jsdelivr.net/gh/Farmers-Carrot/Carrot-logo/carrotcoin_128.png"
+	},
+	{
+		"symbol": "MOLA",
+		"coinGeckoId": "moonlana",
+		"address": "AMdnw9H5DFtQwZowVFr4kUgSXJzLokKSinvgGiUoLSps",
+		"name": "MOONLANA",
+		"decimals": 9,
+		"logoURI": "https://i.ibb.co/NtrSyDc/moonlana.jpg"
+	},
+	{
+		"symbol": "MER",
+		"coinGeckoId": "mercurial",
+		"address": "MERt85fc5boKw3BW1eYdxonEuJNvXbiMbs6hvheau5K",
+		"name": "Mercurial",
+		"decimals": 6,
+		"logoURI": "https://www.mercurial.finance/mercurial-explorer-logo.svg"
+	},
+	{
+		"symbol": "LOTTO",
+		"coinGeckoId": "lotto",
+		"address": "7Csho7qjseDjgX3hhBxfwP1W3LYARK3QH3PM2x55we14",
+		"name": "Lotto",
+		"decimals": 9,
+		"logoURI": "https://assets.coingecko.com/coins/images/13822/large/Lotto-Logo256x256.png?1612150421"
+	},
+	{
+		"symbol": "BOLE",
+		"coinGeckoId": "bole-token",
+		"address": "7uv3ZvZcQLd95bUp5WMioxG7tyAZVXFfr8JYkwhMYrnt",
+		"name": "Bole Token",
+		"decimals": 4,
+		"logoURI": "https://i.ibb.co/YPyhnkS/Bole.jpg"
+	},
+	{
+		"symbol": "APYS",
+		"coinGeckoId": "apyswap",
+		"address": "5JnZ667P3VcjDinkJFysWh2K2KtViy63FZ3oL5YghEhW",
+		"name": "APYSwap",
+		"decimals": 9,
+		"logoURI": "https://cloudflare-ipfs.com/ipfs/QmR5oKs4ygasusTtt2n2fCBLVufgpeXToJtb9vhXEmbaY1/token_dark.png"
+	},
+	{
+		"symbol": "SOLPAD",
+		"coinGeckoId": "solpad-finance",
+		"address": "GfJ3Vq2eSTYf1hJP6kKLE9RT6u7jF9gNszJhZwo5VPZp",
+		"name": "Solpad Finance",
+		"decimals": 9,
+		"logoURI": "https://www.solpad.finance/logo.png"
+	},
+	{
+		"symbol": "SOLA",
+		"coinGeckoId": "solarys",
+		"address": "BsDrXiQaFd147Fxq1fQYbJQ77P6tmPkRJQJzkKvspDKo",
+		"name": "SolaPAD Token",
+		"decimals": 8,
+		"logoURI": "https://i.ibb.co/3p4SMBd/LOGO.png"
+	},
+	{
+		"symbol": "SHBL",
+		"coinGeckoId": "shoebill-coin",
+		"address": "7fCzz6ZDHm4UWC9Se1RPLmiyeuQ6kStxpcAP696EuE1E",
+		"name": "Shoebill Coin",
+		"decimals": 9,
+		"logoURI": "https://cdn.jsdelivr.net/gh/leafwind/shoebill-coin/shoebill.png"
+	},
+	{
+		"symbol": "TULIP",
+		"coinGeckoId": "solfarm",
+		"address": "TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs",
+		"name": "Tulip",
+		"decimals": 6,
+		"logoURI": "https://solfarm.io/solfarm-logo.svg"
+	},
+	{
+		"symbol": "ARDX",
+		"coinGeckoId": "ardcoin",
+		"address": "7zsKqN7Fg2s9VsqAq6XBoiShCVohpGshSUvoWBc6jKYh",
+		"name": "Wrapped ArdCoin (Sollet)",
+		"decimals": 2,
+		"logoURI": "https://cdn.dex.mn/logo/ardx.png"
+	},
+	{
+		"symbol": "SBFC",
+		"coinGeckoId": "sbf-coin",
+		"address": "AWW5UQfMBnPsTaaxCK7cSEmkj1kbX2zUrqvgKXStjBKx",
+		"name": "SBF Coin",
+		"decimals": 6,
+		"logoURI": "https://www.sbfcoin.org/images/sbfcoin.png"
+	},
+	{
+		"symbol": "CATO",
+		"coinGeckoId": "catocoin",
+		"address": "5p2zjqCd1WJzAVgcEnjhb9zWDU7b9XVhFhx4usiyN7jB",
+		"name": "CATO",
+		"decimals": 9,
+		"logoURI": "https://raw.githubusercontent.com/SOL-CAT/SOL-CAT/main/CAT512.jpg"
+	},
+	{
+		"symbol": "TOM",
+		"coinGeckoId": "tom-finance",
+		"address": "J81fW7aza8wVUG1jjzhExsNMs3MrzwT5WrofgFqMjnSA",
+		"name": "Tombili",
+		"decimals": 9,
+		"logoURI": "https://cryptomindex.com/assets/images/coins/TOM.png"
+	},
+	{
+		"symbol": "MPAD",
+		"coinGeckoId": "moonpad",
+		"address": "9KEe6o1jRTqFDFBo2AezsskcxBNwuq1rVeVat1Td8zbV",
+		"name": "MercuryPAD Token",
+		"decimals": 9,
+		"logoURI": "https://i.ibb.co/TvcPsr1/mercury-Pad-Token.png"
+	},
+	{
+		"symbol": "SGT",
+		"coinGeckoId": "sharedstake-governance-token",
+		"address": "4KAFf8ZpNCn1SWLZFo5tbeZsKpVemsobbVZdERWxRvd2",
+		"name": "Sangga Token",
+		"decimals": 8,
+		"logoURI": "https://sgt-info.s3.ap-northeast-2.amazonaws.com/logo/SGT_Logo.png"
+	},
+	{
+		"symbol": "CHAD",
+		"coinGeckoId": "the-chad-token",
+		"address": "5j6BmiZTfHssaWPT23EQYQci3w57VTw7QypKArQZbSZ9",
+		"name": "ChadTrader Token",
+		"decimals": 9,
+		"logoURI": "https://gateway.pinata.cloud/ipfs/QmVZYKtcQ6dGuZ3DeWJ9NHjnWCj2bPTJdpKyXnoaP4eHYx"
+	},
+	{
+		"symbol": "MSC",
+		"coinGeckoId": "monster-slayer-cash",
+		"address": "2wBXHm4oxmed7ZoDkPL4DU8BuRfMYkubVu8T4N38vXdb",
+		"name": "MasterCoin",
+		"decimals": 9,
+		"logoURI": "https://i.ibb.co/vXLmH7R/2mastercoinlogo-Twitter.png"
+	},
+	{
+		"symbol": "APEX",
+		"coinGeckoId": "apex-army",
+		"address": "51tMb3zBKDiQhNwGqpgwbavaGH54mk8fXFzxTc1xnasg",
+		"name": "APEX",
+		"decimals": 9,
+		"logoURI": "https://apexit.finance/images/apex.png"
+	},
+	{
+		"symbol": "SINE",
+		"coinGeckoId": "sinelock",
+		"address": "3RSafdgu7P2smSGHJvSGQ6kZVkcErZXfZTtynJYboyAu",
+		"name": "SINE",
+		"decimals": 4,
+		"logoURI": "https://raw.githubusercontent.com/sinetoken/public/main/icon/circle_icon/circle_icon.svg"
+	},
+	{
+		"symbol": "WHALE",
+		"coinGeckoId": "whale",
+		"address": "whaLeHav12EhGK19u6kKbLRwC9E1EATGnm6MWbBCcUW",
+		"name": "Orca Whale Collectible",
+		"decimals": 0,
+		"logoURI": "https://cdn.jsdelivr.net/gh/solana-labs/token-list@main/assets/mainnet/DjVE6JNiYqPL2QXyCUUh8rNjHrbz9hXHNYt99MQ59qw1/whale.png"
+	},
+	{
+		"symbol": "UBE",
+		"coinGeckoId": "ubeswap",
+		"address": "Da1jboBKU3rqXUqPL3L3BxJ8e67ogVgVKcqy4rWsS7LC",
+		"name": "UBE Token",
+		"decimals": 10,
+		"logoURI": "https://cdn.jsdelivr.net/gh/donfrancisco/ubetoken/UBE.png"
+	},
+	{
+		"symbol": "ARK",
+		"coinGeckoId": "ark",
+		"address": "AhRozpV8CDLJ5z9k8CJWF4P12MVvxdnnU2y2qUhUuNS5",
+		"name": "Sol.Ark",
+		"decimals": 8,
+		"logoURI": "https://i.ibb.co/JyJ9kf0/Logo-1.png"
+	},
+	{
+		"symbol": "STR",
+		"coinGeckoId": "staker",
+		"address": "9zoqdwEBKWEi9G5Ze8BSkdmppxGgVv1Kw4LuigDiNr9m",
+		"name": "Solster",
+		"decimals": 9,
+		"logoURI": "https://solster.finance/logo-mark.png"
+	},
+	{
+		"symbol": "BZX",
+		"coinGeckoId": "bitcoin-zero",
+		"address": "72fFy4SNGcHoEC1TTFTUkxNHriJqg3hBPsa2jSr2cZgb",
+		"name": "BlizeX",
+		"decimals": 6,
+		"logoURI": "https://raw.githubusercontent.com/Blizex-Official/blizex-token/main/logo.jpg"
+	},
+	{
+		"symbol": "DINO",
+		"coinGeckoId": "dino-exchange",
+		"address": "6Y7LbYB3tfGBG6CSkyssoxdtHb77AEMTRVXe8JUJRwZ7",
+		"name": "DINO",
+		"decimals": 6,
+		"logoURI": "https://raw.githubusercontent.com/solanadino/dinotoken/main/solana_dino.jpg"
+	}
+]

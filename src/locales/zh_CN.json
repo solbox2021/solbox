@@ -1,0 +1,68 @@
+{
+    "button": {
+        "about": "关于",
+        "back": "返回",
+        "go": "确定",
+        "home": "首页",
+        "toggle_dark": "深色模式",
+        "toggle_langs": "切换语言"
+    },
+    "dashboard": {
+        "accounts": "账户",
+        "add-account": "前往添加账户",
+        "balance": "余额",
+        "liquidity-pool": "流动性池",
+        "net-worth": "净值",
+        "price": "价格",
+        "to-be-claimed": "待领取",
+        "total-assets": "总资产",
+        "value": "价值",
+        "wallet": "钱包"
+    },
+    "hint": {
+        "copy-success": "复制成功",
+        "no-accounts": "暂无账户",
+        "search": "输入地址以搜索"
+    },
+    "intro": {
+        "desc": "固执己见的 Vite 项目模板",
+        "dynamic-route": "动态路由演示",
+        "hi": "你好，{name}",
+        "whats-your-name": "输入你的名字"
+    },
+    "manage": {
+        "add": "保存",
+        "delete-alert": "您确认要删除该地址吗？",
+        "duplicate-msg": "地址重复",
+        "saved": "已保存",
+        "valide-hint": "请输入有效的Solana地址"
+    },
+    "market": {
+        "1h": "1小时",
+        "24h": "24小时",
+        "7d": "7天",
+        "add_favorite": "添加自选",
+        "coin": "货币",
+        "favorite": "自选",
+        "mkt_cap": "总市值",
+        "no_fav": "还没有自选",
+        "popular": "热门",
+        "price": "价格"
+    },
+    "misc": {
+        "address": "地址",
+        "coming": "即将上线",
+        "coming-desc": "SOLBOX致力于通过数据挖掘发现市场中的低风险套利机会。",
+        "delete": "删除",
+        "right-reserved": "版权所有",
+        "tag": "标签"
+    },
+    "not-found": "未找到页面",
+    "tab": {
+        "arbitrage": "套利",
+        "dapps": "Dapps",
+        "dashboard": "看板",
+        "manage": "账户管理",
+        "market": "行情"
+    }
+}

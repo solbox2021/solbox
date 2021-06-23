@@ -1,0 +1,33 @@
+{
+    "name": "scripts",
+    "version": "1.0.0",
+    "description": "some tools for solbox",
+    "main": "index.js",
+    "scripts": {
+        "coingecko": "ts-node coingecko.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Joe.Wu",
+    "license": "ISC",
+    "dependencies": {
+        "@project-serum/borsh": "^0.2.1",
+        "@project-serum/serum": "^0.13.34",
+        "@project-serum/sol-wallet-adapter": "^0.2.0",
+        "@solana/spl-token": "^0.1.4",
+        "@solana/spl-token-registry": "^0.2.118",
+        "@solana/web3.js": "^1.15.0",
+        "bignumber.js": "^9.0.1",
+        "bip32": "^2.0.6",
+        "bip39": "^3.0.2",
+        "borsh": "^0.4.0",
+        "bs58": "^4.0.1",
+        "coingecko-api-v3": "^0.0.11",
+        "tweetnacl": "^1.0.3",
+        "yaml": "^1.10.2"
+    },
+    "devDependencies": {
+        "@types/node": "^15.6.1",
+        "ts-node": "^10.0.0",
+        "typescript": "^4.3.2"
+    }
+}

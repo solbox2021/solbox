@@ -1,0 +1,68 @@
+{
+  "button": {
+    "about": "About",
+    "back": "Back",
+    "go": "GO",
+    "home": "Home",
+    "toggle_dark": "Dark Mode",
+    "toggle_langs": "Change languages"
+  },
+  "dashboard": {
+    "accounts": "Accounts",
+    "add-account": "Go to add account",
+    "balance": "Balance",
+    "liquidity-pool": "Liquidity Pool",
+    "net-worth": "Net Worth",
+    "price": "Price",
+    "to-be-claimed": "To Be Claimed",
+    "total-assets": "Total Assets",
+    "value": "Value",
+    "wallet": "Wallet"
+  },
+  "hint": {
+    "copy-success": "Copy Success",
+    "no-accounts": "No Account",
+    "search": "Search by Address"
+  },
+  "intro": {
+    "desc": "Opinionated Vite Starter Template",
+    "dynamic-route": "Demo of dynamic route",
+    "hi": "Hi, {name}!",
+    "whats-your-name": "What's your name?"
+  },
+  "manage": {
+    "add": "Add",
+    "delete-alert": "Are you sure to permanently delete this address?",
+    "duplicate-msg": "Duplicated address",
+    "saved": "Saved",
+    "valide-hint": "Please input valide Solana address"
+  },
+  "market": {
+    "1h": "1h",
+    "24h": "24h",
+    "7d": "7d",
+    "add_favorite": "Add Favorites",
+    "coin": "Coin",
+    "favorite": "Favorite",
+    "mkt_cap": "Mkt Cap",
+    "no_fav": "No favorite yet",
+    "popular": "Popular",
+    "price": "Price"
+  },
+  "misc": {
+    "address": "Address",
+    "coming": "Coming soon",
+    "coming-desc": "SOLBOX will help users discovering low-risk arbitrage trading opportunities.",
+    "delete": "Delete",
+    "right-reserved": "All rights reserved",
+    "tag": "Tag"
+  },
+  "not-found": "This page could not be found.",
+  "tab": {
+    "arbitrage": "Arbitrage",
+    "dapps": "Dapps",
+    "dashboard": "Dashboard",
+    "manage": "Manage Accounts",
+    "market": "Market"
+  }
+}
