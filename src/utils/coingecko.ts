@@ -1,5 +1,5 @@
 import coinGeckoIds from '@/assets/coingecko.json'
-import { Price, CoinGeckoApi, SIMPLE_PRICE_PATH, PriceRes, Market } from '@/utils/api'
+import { CoinGeckoApi, SIMPLE_PRICE_PATH, PriceRes, Market } from '@/utils/api'
 import { TokenInfo } from '@solana/spl-token-registry'
 
 export const CommonTokenList = [
@@ -22,17 +22,19 @@ export function getCoinGeckoId(coinSymbol: string | undefined): string | undefin
   return coinGeckoIds.find(({ symbol }) => (symbol === coinSymbol))?.coinGeckoId
 }
 
-export async function fetchPrice(coinSymbol: string | undefined, currency = 'usd'): Promise<Price | undefined> {
-  if (!coinSymbol) return undefined
-  const id = getCoinGeckoId(coinSymbol)
-  if (!id) return undefined
+export function getSymbolWithId(coinId: string): string | undefined {
+  return coinGeckoIds.find(({ coinGeckoId }) => (coinGeckoId === coinId))?.symbol
+}
+
+export async function fetchPrices(coinSymbols: string[], currency = 'usd'): Promise<PriceRes> {
+  const coinIds = coinSymbols.map(value => getCoinGeckoId(value)).filter(value => value).join(',')
   const resp = await CoinGeckoApi.get<PriceRes>(SIMPLE_PRICE_PATH, {
     params: {
-      ids: id,
+      ids: coinIds,
       vs_currencies: currency,
     },
   })
-  return resp.data[id]
+  return resp.data
 }
 
 export const HOT_COIN_MARKET = [

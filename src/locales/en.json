@@ -24,11 +24,11 @@
     "no-accounts": "No Account",
     "search": "Search by Address"
   },
-  "intro": {
-    "desc": "Opinionated Vite Starter Template",
-    "dynamic-route": "Demo of dynamic route",
-    "hi": "Hi, {name}!",
-    "whats-your-name": "What's your name?"
+  "index": {
+    "built-on": "Built on",
+    "launch": "Launch App",
+    "subtitle": "Manage all your assets. Track market trends. Find arbitrage trading opportunities.",
+    "title": "Portal to the Solana world"
   },
   "manage": {
     "add": "Add",

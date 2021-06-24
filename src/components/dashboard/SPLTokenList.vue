@@ -6,6 +6,8 @@ import { Connection, PublicKey } from '@solana/web3.js'
 import { getMultiTokenAccounts, getMultiBalance, TokenAccountInfo } from '@/utils/web3'
 import { tokensStore } from '@/store'
 import SPLTokenItem from '@/components/dashboard/SPLTokenItem.vue'
+import { getCoinGeckoId } from '@/utils/coingecko'
+import { PriceManager } from '@/store/prices-manager'
 
 export default defineComponent({
   components: { SPLTokenItem },
@@ -47,6 +49,22 @@ export default defineComponent({
       return tokens
     })
 
+    // update all tokens price
+    watch(allTokensAccounts, (newValue, oldValue) => {
+      if (newValue.length > 0) {
+        const tokens = newValue
+          .filter(({ mint }) => (tokensStore.getTokenInfo(mint.toString()) !== undefined))
+          .filter(({ amount }) => amount > 0)
+          .map(({ mint }) => tokensStore.getTokenInfo(mint.toString())?.symbol)
+        const symbols: string[] = []
+        tokens.forEach((s) => {
+          if (s && !symbols.includes(s)) symbols.push(s)
+        })
+        if (!symbols.includes('SOL')) symbols.push('SOL')
+        PriceManager.update(symbols)
+      }
+    })
+
     const tokenValues: Ref<number[]> = ref([])
     const receiveUpdatedValue = function(index: number, value: number) {
       tokenValues.value[index] = value
@@ -69,6 +87,7 @@ export default defineComponent({
     return {
       t,
       walletTokens,
+      tokenValues,
       receiveUpdatedValue,
     }
   },

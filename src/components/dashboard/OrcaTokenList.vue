@@ -4,6 +4,7 @@ import { PoolRes, getOrcaPoolByMintAddress, OrcaTokenAccountInfo, getOrcaPools }
 import { Connection, PublicKey } from '@solana/web3.js'
 import { getMultiTokenAccounts, TokenAccountInfo } from '@/utils/web3'
 import OrcaTokenItem from '@/components/dashboard/OrcaTokenItem.vue'
+import { PriceManager } from '@/store/prices-manager'
 
 export default defineComponent({
   components: { OrcaTokenItem },
@@ -36,6 +37,15 @@ export default defineComponent({
         return new OrcaTokenAccountInfo(tokenAccountInfo, info)
       })
       return pools
+    })
+
+    watch(orcaTokens, (newValue, oldValue) => {
+      const symbols: string[] = []
+      newValue.forEach((info) => {
+        if (info.poolInfo && !symbols.includes(info.poolInfo.tokenAName)) symbols.push(info.poolInfo.tokenAName)
+        if (info.poolInfo && !symbols.includes(info.poolInfo.tokenBName)) symbols.push(info.poolInfo.tokenBName)
+      })
+      PriceManager.update(symbols)
     })
 
     const poolValues: Ref<number[]> = ref([])

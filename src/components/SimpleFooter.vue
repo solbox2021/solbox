@@ -26,7 +26,7 @@ export default defineComponent({
     </p>
 
     <div class="flex -mx-2">
-      <a href="#" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Github">
+      <a href="https://github.com/solbox2021/solbox" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Github">
         <Icon icon="mdi:github" class="h-5 fill-current w-5" />
       </a>
     </div>

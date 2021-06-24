@@ -1,14 +1,13 @@
 <script lang="ts">
-import { defineComponent, Ref, computed, watch, getCurrentInstance, ref } from 'vue'
-import { Price } from '@/utils/api'
+import { defineComponent, computed, watch, getCurrentInstance, ref } from 'vue'
 import { OrcaTokenAccountInfo, getOrcaAmountInfo, OrcaAmountInfo } from '@/utils/orca'
 import { getTokenSupply } from '@/utils/web3'
 import { Connection, PublicKey } from '@solana/web3.js'
-import { pricesStore, tokensStore } from '@/store'
-import { fetchPrice } from '@/utils/coingecko'
+import { tokensStore } from '@/store'
 import { useI18n } from 'vue-i18n'
 import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
+import { PriceManager } from '@/store/prices-manager'
 
 export default defineComponent({
   components: { Icon },
@@ -22,7 +21,9 @@ export default defineComponent({
 
     const connection: Connection = getCurrentInstance()?.appContext.config.globalProperties.$web3
 
-    const symbolName = computed(() => `${props.info?.poolInfo?.tokenAName}-${props.info?.poolInfo?.tokenBName}`)
+    const tokenASymbol = computed(() => props.info?.poolInfo?.tokenAName)
+    const tokenBSymbol = computed(() => props.info?.poolInfo?.tokenBName)
+    const symbolName = computed(() => `${tokenASymbol.value}-${tokenBSymbol.value}`)
 
     const lpTokenSupply = ref(0) // all released lp-token amount
     async function fetchLpTokenSupply(mint: PublicKey) {
@@ -51,16 +52,10 @@ export default defineComponent({
     const tokenBInfo = computed(() => tokensStore.getTokenInfo((tokenBAmountInPool.value as OrcaAmountInfo).mint))
 
     // token A & B price
-    const tokenAPrice: Ref<Price | undefined> = ref()
-    const tokenBPrice: Ref<Price | undefined> = ref()
-    async function getPrice(symbols: string[]) {
-      tokenAPrice.value = pricesStore.getPrice(symbols[0])
-      tokenBPrice.value = pricesStore.getPrice(symbols[1])
-      if (!tokenAPrice.value)
-        tokenAPrice.value = await fetchPrice(symbols[0])
-      if (!tokenBPrice.value)
-        tokenBPrice.value = await fetchPrice(symbols[1])
-    }
+    const allPrices = PriceManager.state
+    const tokenAPrice = computed(() => allPrices.prices.find(({ symbol }) => symbol === tokenASymbol.value)?.price ?? undefined)
+    const tokenBPrice = computed(() => allPrices.prices.find(({ symbol }) => symbol === tokenBSymbol.value)?.price ?? undefined)
+
     // token A & B value
     const tokenAValue = computed(() => tokenAPrice.value ? tokenAPrice.value.usd * tokenAAmount.value : 0)
     const tokenBValue = computed(() => tokenBPrice.value ? tokenBPrice.value.usd * tokenBAmount.value : 0)
@@ -71,9 +66,6 @@ export default defineComponent({
         const tokenA = value?.poolInfo?.tokenAccountA
         const tokenB = value?.poolInfo?.tokenAccountB
         fetchSupply([tokenA, tokenB])
-        const symbolA = value.poolInfo.tokenAName
-        const symbolB = value.poolInfo.tokenBName
-        getPrice([symbolA, symbolB])
       }
     }, { immediate: true })
 

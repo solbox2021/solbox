@@ -41,9 +41,16 @@ export default defineComponent({
 <template>
   <aside class="bg-white flex-shrink-0 w-64 z-20 hidden overflow-y-auto md:block dark:bg-gray-800">
     <div class="py-4 text-gray-500 dark:text-gray-400">
-      <a class="font-bold text-lg text-left ml-6 text-gray-800 dark:text-gray-200" href="#">
+      <div
+        class="cursor-pointer flex font-bold text-lg text-left ml-6 text-gray-800 items-center dark:text-gray-200"
+        @click="router.push('/')"
+      >
+        <img
+          src="@/assets/images/solbox.png"
+          class="h-8 w-8"
+        >
         SolBox
-      </a>
+      </div>
       <ul class="mt-6">
         <li class="cursor-pointer py-3 px-6 relative hover:text-gray-800 dark:hover:text-gray-200" @click="router.push('/dashboard')">
           <span

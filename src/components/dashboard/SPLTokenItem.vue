@@ -1,14 +1,11 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { computed, defineEmit, defineProps, initCustomFormatter, watch } from '@vue/runtime-core'
+import { computed, watch } from '@vue/runtime-core'
 import { TokenAccountInfo } from '@/utils/web3'
-import { pricesStore } from '@/store'
-import { asyncComputed } from '@vueuse/core'
-import { CoinGeckoApi, SIMPLE_PRICE_PATH } from '@/utils/api'
 import { Icon, addCollection } from '@iconify/vue'
 import ri from '@iconify/json/json/ri.json'
-import { getCoinGeckoId, fetchPrice } from '@/utils/coingecko'
+import { PriceManager } from '@/store/prices-manager'
 
 export default defineComponent({
   components: { Icon },
@@ -20,28 +17,13 @@ export default defineComponent({
     addCollection(ri)
     const { t } = useI18n()
     const balance = computed(() => props.info?.tokenInfo ? props.info.amount / 10 ** props.info.tokenInfo.decimals : 0)
-    const commonPrice = computed(() => pricesStore.getPrice(props.info?.tokenInfo?.symbol))
-    const price = ref(0)
-    const evaluating = ref(false)
-    const tokenValue = asyncComputed(
-      async() => {
-        if (commonPrice.value) {
-          price.value = commonPrice.value.usd
-          return balance.value * commonPrice.value.usd
-        }
-        else {
-          const fetchedPrice = await fetchPrice(props.info?.tokenInfo?.symbol)
-          if (!fetchedPrice) return 0
-          price.value = fetchedPrice.usd
-          return fetchedPrice.usd * balance.value
-        }
-      },
-      null,
-      { lazy: true, evaluating },
-    )
+    const allPrices = PriceManager.state
+    const price = computed(() => allPrices.prices.find(({ symbol }) => symbol === props.info?.tokenInfo?.symbol)?.price?.usd ?? 0)
+    const tokenValue = computed(() => price.value > 0 ? price.value * balance.value : 0)
+
     watch(tokenValue, (newValue, oldValue) => {
       emit('tokenValue', newValue)
-    })
+    }, { immediate: true })
     return {
       t,
       balance,
