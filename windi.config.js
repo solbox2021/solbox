@@ -1,13 +1,11 @@
 import { defineConfig } from 'windicss/helpers'
 import colors from 'windicss/colors'
 import typography from 'windicss/plugin/typography'
-import tailwindcssForms from '@tailwindcss/forms'
 
 export default defineConfig({
   darkMode: 'class',
   plugins: [
     typography(),
-    tailwindcssForms(),
   ],
   theme: {
     extend: {
